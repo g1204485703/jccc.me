@@ -25,13 +25,13 @@ after_script:
   - git checkout master
   - cd ../
   - mv .deploy_git/.git/ ./public/
+  - rsync -az -vv --delete -e 'ssh -p 22' ./public/ root@jccc.me:/var/www/html
   - cd ./public
-  - rsync -az -vv --delete -e 'ssh -p 22' public/ root@jccc.me:/var/www/html
   - git config user.name "g1204485703"
   - git config user.email "1204485703@qq.com"
   - git add .
   - git commit -m "Travis CI Auto Builder at `date +"%Y-%m-%d %H:%M"`"
-  - git push --force --quiet "https://${travisClToken}@${GH_REF}" master:master
+  - git push --force --quiet "https://${travisCl}@${GH_REF}" master:master
 branches:
   only:
   - source
