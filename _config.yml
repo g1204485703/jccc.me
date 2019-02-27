@@ -78,7 +78,10 @@ theme: next
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: rsync
+- type: git
+  repo: git@github.com:g1204485703/jccc.me.git
+  branch: master
+- type: rsync
   host: jccc.me
   user: deploy
   root: /var/www/html
