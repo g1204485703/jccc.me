@@ -6,13 +6,13 @@
 
 1. ### File - New - Project
 
-   ![new project](imag/new project.png)
+   ![newProject](imag/new project.png)
 
 2. ### 选择 Spring Initializer，使用 Spring 提供的快速构建 Service 
 
    https://start.srping.io 
 
-   ![project init 1](imag/project init 1.png)
+   ![projectinit01](imag/project init 1.png)
 
 3. ### 填写相应项目信息 
 
