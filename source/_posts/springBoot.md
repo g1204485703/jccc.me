@@ -6,32 +6,32 @@
 
 1. ### File - New - Project
 
-   ![newProject](imag/new project.png)
+   ![newProject](/imag/new project.png)
 
 2. ### 选择 Spring Initializer，使用 Spring 提供的快速构建 Service 
 
    https://start.srping.io 
 
-   ![projectinit01](imag/project init 1.png)
+   ![projectinit01](/imag/project init 1.png)
 
 3. ### 填写相应项目信息 
 
    Group：组织名称
    Artifact：项目名称
    Version：版本
-   Name：项目名![project init 2](imag/project init 2.png)
+   Name：项目名![project init 2](/imag/project init 2.png)
 
 4. ### 勾选所需的依赖
 
-   ![1548657001676](imag/1548661606578.png)
+   ![1548657001676](/imag/1548661606578.png)
 
 5. ### 选择本地存储位置
 
-   ![1548657030708](imag/1548657030708.png)
+   ![1548657030708](/imag/1548657030708.png)
 
 6. ### 完成，maven会自动加载依赖，完成项目构建
 
-   ![1548657751751](imag/1548657751751-1551082094718.png)
+   ![1548657751751](/imag/1548657751751-1551082094718.png)
 
 
 
@@ -56,11 +56,11 @@
 
 2. #### 选择 DemoApplication，启动项目，等待项目在8080端口完成启动
 
-   ![1548657810384](imag/1548657810384.png)
+   ![1548657810384](/imag/1548657810384.png)
 
 3. #### 使用浏览器访问 localhost:8080/hello，成功返回 “Hello Spring Boot”
 
-   ![1548657864829](imag/1548657864829.png)
+   ![1548657864829](/imag/1548657864829.png)
 
 4. ##### 
 
@@ -83,7 +83,7 @@
 
    配置数据库连接相关配置，
 
-3. ![icons8-globe-64](imag/icons8-globe-64.png)
+3. ![icons8-globe-64](/imag/icons8-globe-64.png)
 
 4. 
 
