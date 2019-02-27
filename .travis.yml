@@ -37,4 +37,4 @@ branches:
   - source
 env:
   global:
-  - GH_REF: github.com/g1204485703/blog.git
+  - GH_REF: github.com/g1204485703/jccc.me.git
