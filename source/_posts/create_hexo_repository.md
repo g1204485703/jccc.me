@@ -1,3 +1,11 @@
+```
+---
+title: hexo的git仓库构建
+date: 2019-02-27 16:00:00
+tags: 
+---
+```
+
 # hexo的仓库构造
 
 1. ## github创建新repositories
