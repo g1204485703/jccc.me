@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="Java,Java基础,Java集合类,">
 
 
 
@@ -79,17 +79,21 @@
 
 
 
-<meta name="description" content="jc is me">
+<meta name="description" content="Java集合类Java中的集合类框架    集合类其实是Java中集合的广义说法，在《Java编程思想》的11章提到  ​    Java实用类库还提供了一套相当完善的容器类来解决这个问题，其中基本的数据类型是List、Set、Queue和Map。这些对象类型也称为集合类，但由于Java的类库中使用了Collection这个名字来指代该类库的一个特殊子集，所以我是用了范围更广的术语“容器”称呼他们">
+<meta name="keywords" content="Java,Java基础,Java集合类">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java基础">
+<meta property="og:title" content="Java基础-集合类">
 <meta property="og:url" content="https://www.jccc.me/2019/02/28/java基础-集合/index.html">
 <meta property="og:site_name" content="jccc">
-<meta property="og:description" content="jc is me">
+<meta property="og:description" content="Java集合类Java中的集合类框架    集合类其实是Java中集合的广义说法，在《Java编程思想》的11章提到  ​    Java实用类库还提供了一套相当完善的容器类来解决这个问题，其中基本的数据类型是List、Set、Queue和Map。这些对象类型也称为集合类，但由于Java的类库中使用了Collection这个名字来指代该类库的一个特殊子集，所以我是用了范围更广的术语“容器”称呼他们">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-28T01:47:11.896Z">
+<meta property="og:image" content="https://www.jccc.me/imag/b171c70578a6d6f369066d6dfbc45555.jpg">
+<meta property="og:image" content="https://www.jccc.me/imag/LinkedList-1551342550459.png">
+<meta property="og:updated_time" content="2019-02-28T09:46:16.975Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="java基础">
-<meta name="twitter:description" content="jc is me">
+<meta name="twitter:title" content="Java基础-集合类">
+<meta name="twitter:description" content="Java集合类Java中的集合类框架    集合类其实是Java中集合的广义说法，在《Java编程思想》的11章提到  ​    Java实用类库还提供了一套相当完善的容器类来解决这个问题，其中基本的数据类型是List、Set、Queue和Map。这些对象类型也称为集合类，但由于Java的类库中使用了Collection这个名字来指代该类库的一个特殊子集，所以我是用了范围更广的术语“容器”称呼他们">
+<meta name="twitter:image" content="https://www.jccc.me/imag/b171c70578a6d6f369066d6dfbc45555.jpg">
 
 
 
@@ -125,7 +129,7 @@
 
 
 
-  <title>java基础 | jccc</title>
+  <title>Java基础-集合类 | jccc</title>
   
 
 
@@ -249,7 +253,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">java基础</h1>
+          <h1 class="post-title" itemprop="name headline">Java基础-集合类</h1>
         
 
         <div class="post-meta">
@@ -271,6 +275,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -299,7 +325,23 @@
       
 
       
-        
+        <h1 id="Java集合类"><a href="#Java集合类" class="headerlink" title="Java集合类"></a>Java集合类</h1><h2 id="Java中的集合类框架"><a href="#Java中的集合类框架" class="headerlink" title="Java中的集合类框架"></a>Java中的集合类框架</h2><p><strong>    集合类</strong>其实是Java中集合的广义说法，在《Java编程思想》的11章提到</p>
+<blockquote>
+<p>​    Java实用类库还提供了一套相当完善的容器类来解决这个问题，其中基本的数据类型是<strong>List</strong>、<strong>Set</strong>、<strong>Queue</strong>和<strong>Map</strong>。这些对象类型也称为集合类，但由于Java的类库中使用了Collection这个名字来指代该类库的一个特殊子集，所以我是用了范围更广的术语“容器”称呼他们。</p>
+</blockquote>
+<p>故，本文中以“集合类”称呼这些类型对象，以“集合”称呼Collection的实现类。</p>
+<p>​    集合类中基本数据类型有四种，List、Set、Queue和Map，在Java对集合类的设计时，分为了两大类型的接口Collection和Map。Controller即为集合，存储一个元素的集合，具有List、Set和Queue三种结构数据。Map为图，存储键/值对映射，仅有Map一种结构的数据。</p>
+<p><img src="/imag/b171c70578a6d6f369066d6dfbc45555.jpg" alt="img"></p>
+<a id="more"></a>
+<h2 id="Collection"><a href="#Collection" class="headerlink" title="Collection"></a>Collection</h2><h3 id="List接口"><a href="#List接口" class="headerlink" title="List接口"></a>List接口</h3><p>​    List是有序可重复元素的集合，同时也称为序列，可对其中的每个元素的插入位置进行精准地控制，可以通过索引来访问元素，遍历元素。</p>
+<p>​    List接口主要实现类uml图：<img src="/imag/LinkedList-1551342550459.png" alt="LinkedList"></p>
+<h4 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h4><p>​    ArrayList底层通过数组实现，会随着存入元素的增加而进行动态扩容。</p>
+<h5 id="ArrayList的默认容量是10"><a href="#ArrayList的默认容量是10" class="headerlink" title="ArrayList的默认容量是10"></a>ArrayList的默认容量是10</h5><p>​    在默认构造下，默认创建容量为10的ArrayList对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Default initial capacity.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> DEFAULT_CAPACITY = <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+<h5 id="扩容机制"><a href="#扩容机制" class="headerlink" title="扩容机制"></a>扩容机制</h5><p>​    在使用add(E e);方法添加元素时，会调用ensureCapacityInternal(size + 1);方法，确保ArrayList的容量能够完成此次的元素新增。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**抽象类AbstractList中的属性，记录List结构修改的次数*/</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">transient</span> <span class="keyword">int</span> modCount = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**当前ArrayList的大小*/</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> size;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**ArrayList的最大容量*/</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MAX_ARRAY_SIZE = Integer.MAX_VALUE - <span class="number">8</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**当前ArrayList存储的元素数组*/</span></span><br><span class="line"><span class="keyword">transient</span> Object[] elementData;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">add</span><span class="params">(E e)</span> </span>&#123;</span><br><span class="line">	ensureCapacityInternal(size + <span class="number">1</span>);  <span class="comment">// Increments modCount!!</span></span><br><span class="line">	elementData[size++] = e;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**返回最小需要容量*/</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">calculateCapacity</span><span class="params">(Object[] elementData, <span class="keyword">int</span> minCapacity)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//如果当前为空数组，则返回默认大小和所需大小中的较大值</span></span><br><span class="line">    <span class="keyword">if</span> (elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) &#123;</span><br><span class="line">        <span class="keyword">return</span> Math.max(DEFAULT_CAPACITY, minCapacity);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> minCapacity;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**确保容量*/</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">ensureCapacityInternal</span><span class="params">(<span class="keyword">int</span> minCapacity)</span> </span>&#123;</span><br><span class="line">	ensureExplicitCapacity(calculateCapacity(elementData, minCapacity));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">ensureExplicitCapacity</span><span class="params">(<span class="keyword">int</span> minCapacity)</span> </span>&#123;</span><br><span class="line">	modCount++;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// overflow-conscious code</span></span><br><span class="line">	<span class="keyword">if</span> (minCapacity - elementData.length &gt; <span class="number">0</span>)</span><br><span class="line">		grow(minCapacity);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">grow</span><span class="params">(<span class="keyword">int</span> minCapacity)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// overflow-conscious code</span></span><br><span class="line">    <span class="keyword">int</span> oldCapacity = elementData.length;</span><br><span class="line">    <span class="keyword">int</span> newCapacity = oldCapacity + (oldCapacity &gt;&gt; <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span> (newCapacity - minCapacity &lt; <span class="number">0</span>)</span><br><span class="line">        newCapacity = minCapacity;</span><br><span class="line">    <span class="keyword">if</span> (newCapacity - MAX_ARRAY_SIZE &gt; <span class="number">0</span>)</span><br><span class="line">        newCapacity = hugeCapacity(minCapacity);</span><br><span class="line">    <span class="comment">// minCapacity is usually close to size, so this is a win:</span></span><br><span class="line">    elementData = Arrays.copyOf(elementData, newCapacity);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h4><p>​    LinkedList底层通过链表实现，随着元素的增加不断向链表尾部追加节点。</p>
+<h3 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h3><h3 id="Queue"><a href="#Queue" class="headerlink" title="Queue"></a>Queue</h3>
       
     </div>
     
@@ -313,6 +355,16 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/Java基础/" rel="tag"># Java基础</a>
+          
+            <a href="/tags/Java集合类/" rel="tag"># Java集合类</a>
+          
+        </div>
       
 
       
@@ -383,8 +435,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -406,7 +467,25 @@
             
 
             
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
             
 
           </nav>
@@ -426,6 +505,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java集合类"><span class="nav-number">1.</span> <span class="nav-text">Java集合类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java中的集合类框架"><span class="nav-number">1.1.</span> <span class="nav-text">Java中的集合类框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Collection"><span class="nav-number">1.2.</span> <span class="nav-text">Collection</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#List接口"><span class="nav-number">1.2.1.</span> <span class="nav-text">List接口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ArrayList"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">ArrayList</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#ArrayList的默认容量是10"><span class="nav-number">1.2.1.1.1.</span> <span class="nav-text">ArrayList的默认容量是10</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#扩容机制"><span class="nav-number">1.2.1.1.2.</span> <span class="nav-text">扩容机制</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LinkedList"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">LinkedList</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Set"><span class="nav-number">1.2.2.</span> <span class="nav-text">Set</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Queue"><span class="nav-number">1.2.3.</span> <span class="nav-text">Queue</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
