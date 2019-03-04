@@ -95,8 +95,8 @@ menu:
   home: / || home
   #about: /about/ || user
   tags: /tags/ || tags
-  categories: /categories
-  archives: /archives
+  categories: /categories/ || th
+  archives: /archives/ || archive
   #schedule: /schedule/ || calendar
   #sitemap: /sitemap.xml || sitemap
   #commonweal: /404/ || heartbeat
@@ -695,7 +695,7 @@ pace: false
 pace_theme: pace-theme-minimal
 
 # Canvas-nest
-canvas_nest: true
+canvas_nest: false
 
 # three_waves
 three_waves: false
