@@ -35,11 +35,13 @@ tags: [Java,Java基础,Java集合类]
 
 ​	ArrayList底层通过数组实现，会随着存入元素的增加而进行动态扩容。
 
-​	关于ArrayList的详细解读，请看Java基础-ArrayList
+​	关于ArrayList的详细解读，请看[Java基础-ArrayList](https://www.jccc.me/2019/02/28/Java%E5%9F%BA%E7%A1%80-ArrayList/)
 
 #### LinkedList
 
 ​	LinkedList底层通过链表实现，随着元素的增加不断向链表尾部追加节点。
+
+​	关于LinkedList的详细解读，请看
 
 ### Set
 

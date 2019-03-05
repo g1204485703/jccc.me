@@ -3,7 +3,6 @@ title: Java基础-ArrayList
 date: 2019-02-28 21:30:00
 categories: Java
 tags: [Java,Java基础,Java集合类,ArrayList]
-
 ---
 
 # ArrayList
@@ -26,7 +25,7 @@ tags: [Java,Java基础,Java集合类,ArrayList]
 
 ![ArrayList](/imag/ArrayList.png)
 
-## ArrayList构造方法
+## 构造方法
 
 ### 默认构造
 
