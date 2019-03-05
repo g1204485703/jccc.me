@@ -88,7 +88,7 @@
 <meta property="og:description" content="ArrayList​    ArrayList是List接口下的动态数组的一个具体实现，相当于Array的复杂形式，提供所有的可选列表操作，允许存储包括null在内的所有元素。底层通过数组实现，随着元素的增加而动态地扩容。 特点：  有序数组，可存入重复元素，元素也可为null 内部实现为数组，是一段连续的内存 容量不固定，随所需容量动态扩容 线程不安全，内部所有方法非同步方法 相比LinkedL">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://www.jccc.me/imag/ArrayList.png">
-<meta property="og:updated_time" content="2019-03-04T09:23:30.405Z">
+<meta property="og:updated_time" content="2019-03-05T07:06:29.984Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java基础-ArrayList">
 <meta name="twitter:description" content="ArrayList​    ArrayList是List接口下的动态数组的一个具体实现，相当于Array的复杂形式，提供所有的可选列表操作，允许存储包括null在内的所有元素。底层通过数组实现，随着元素的增加而动态地扩容。 特点：  有序数组，可存入重复元素，元素也可为null 内部实现为数组，是一段连续的内存 容量不固定，随所需容量动态扩容 线程不安全，内部所有方法非同步方法 相比LinkedL">
@@ -356,7 +356,7 @@
 <a id="more"></a>
 <h2 id="ArrayList的类关系总览"><a href="#ArrayList的类关系总览" class="headerlink" title="ArrayList的类关系总览"></a>ArrayList的类关系总览</h2><p>​    ArrayList是Collection下的List接口下的一个具体实现类。</p>
 <p><img src="/imag/ArrayList.png" alt="ArrayList"></p>
-<h2 id="ArrayList构造方法"><a href="#ArrayList构造方法" class="headerlink" title="ArrayList构造方法"></a>ArrayList构造方法</h2><h3 id="默认构造"><a href="#默认构造" class="headerlink" title="默认构造"></a>默认构造</h3><p>​    在默认构造下，默认创建一个元素数组为空的集合，直接将<code>DEFAULTCAPACITY_EMPTY_ELEMENTDATA</code>赋值给了<code>elementData</code>。</p>
+<h2 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h2><h3 id="默认构造"><a href="#默认构造" class="headerlink" title="默认构造"></a>默认构造</h3><p>​    在默认构造下，默认创建一个元素数组为空的集合，直接将<code>DEFAULTCAPACITY_EMPTY_ELEMENTDATA</code>赋值给了<code>elementData</code>。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Default initial capacity.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> DEFAULT_CAPACITY = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Shared empty array instance used for empty instances.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Object[] EMPTY_ELEMENTDATA = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Shared empty array instance used for default sized empty instances. We</span></span><br><span class="line"><span class="comment"> * distinguish this from EMPTY_ELEMENTDATA to know how much to inflate when</span></span><br><span class="line"><span class="comment"> * first element is added.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * The array buffer into which the elements of the ArrayList are stored.</span></span><br><span class="line"><span class="comment"> * The capacity of the ArrayList is the length of this array buffer. Any</span></span><br><span class="line"><span class="comment"> * empty ArrayList with elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA</span></span><br><span class="line"><span class="comment"> * will be expanded to DEFAULT_CAPACITY when the first element is added.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">transient</span> Object[] elementData; <span class="comment">// non-private to simplify nested class access</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Constructs an empty list with an initial capacity of ten.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ArrayList</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.elementData = DEFAULTCAPACITY_EMPTY_ELEMENTDATA;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="有参构造"><a href="#有参构造" class="headerlink" title="有参构造"></a>有参构造</h3><p>​    ArrayList提供两种有参构造，分别为自定义初始容量构造和自定义元素构造。</p>
 <h4 id="自定义初始容量构造"><a href="#自定义初始容量构造" class="headerlink" title="自定义初始容量构造"></a>自定义初始容量构造</h4><p>​    定义初始容量构造，创建ArrayList对象时，提供一个默认的初始容量用来创建相应容量的ArrayList对象。一般在容量确定的情况下使用，可节约ArrayList所需占用的内存。在容量较大的情况下，给定默认大小也可以减少扩容次数，提高效率。</p>
@@ -414,6 +414,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/04/Java基础-LinkedList/" rel="prev" title="Java基础-ArrayList">
+                Java基础-ArrayList <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -490,7 +494,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -512,7 +516,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -545,7 +549,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ArrayList"><span class="nav-number">1.</span> <span class="nav-text">ArrayList</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ArrayList的类关系总览"><span class="nav-number">1.1.</span> <span class="nav-text">ArrayList的类关系总览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ArrayList构造方法"><span class="nav-number">1.2.</span> <span class="nav-text">ArrayList构造方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#默认构造"><span class="nav-number">1.2.1.</span> <span class="nav-text">默认构造</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有参构造"><span class="nav-number">1.2.2.</span> <span class="nav-text">有参构造</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义初始容量构造"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">自定义初始容量构造</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义元素构造"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">自定义元素构造</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于EMPTY-ELEMENTDATA和DEFAULTCAPACITY-EMPTY-ELEMENTDATA"><span class="nav-number">1.2.3.</span> <span class="nav-text">关于EMPTY_ELEMENTDATA和DEFAULTCAPACITY_EMPTY_ELEMENTDATA</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#扩容机制"><span class="nav-number">1.3.</span> <span class="nav-text">扩容机制</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ArrayList"><span class="nav-number">1.</span> <span class="nav-text">ArrayList</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ArrayList的类关系总览"><span class="nav-number">1.1.</span> <span class="nav-text">ArrayList的类关系总览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构造方法"><span class="nav-number">1.2.</span> <span class="nav-text">构造方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#默认构造"><span class="nav-number">1.2.1.</span> <span class="nav-text">默认构造</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有参构造"><span class="nav-number">1.2.2.</span> <span class="nav-text">有参构造</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义初始容量构造"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">自定义初始容量构造</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自定义元素构造"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">自定义元素构造</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于EMPTY-ELEMENTDATA和DEFAULTCAPACITY-EMPTY-ELEMENTDATA"><span class="nav-number">1.2.3.</span> <span class="nav-text">关于EMPTY_ELEMENTDATA和DEFAULTCAPACITY_EMPTY_ELEMENTDATA</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#扩容机制"><span class="nav-number">1.3.</span> <span class="nav-text">扩容机制</span></a></li></ol></li></ol></div>
             
 
           </div>
