@@ -1,5 +1,5 @@
 ---
-title: Java基础-ArrayList
+title: Java基础-LinkedList
 date: 2019-03-04 09:30:00
 categories: Java
 tags: [Java,Java基础,Java集合类,LinkedList]
