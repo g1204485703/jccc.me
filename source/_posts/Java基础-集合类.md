@@ -63,3 +63,12 @@ tags: [Java,Java基础,Java集合类]
 ### Queue
 
 ## Map
+
+### HashMap
+
+​	key和value都可以为null
+
+### ConcurrentHashMap
+
+​	key和value都不可以为null
+
