@@ -7,6 +7,8 @@ tags: [Java,Java基础,Java集合类,HashMap]
 
 # HashMap
 
+<!--more-->
+
 ## 属性
 
 ```Java
