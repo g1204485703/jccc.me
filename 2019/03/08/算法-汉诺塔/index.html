@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Java,Java基础,Java集合类,">
+  <meta name="keywords" content="算法,汉诺塔,">
 
 
 
@@ -79,21 +79,18 @@
 
 
 
-<meta name="description" content="Java集合类Java中的集合类框架集合类其实是Java中集合的广义说法，在《Java编程思想》的11章提到  ​    Java实用类库还提供了一套相当完善的容器类来解决这个问题，其中基本的数据类型是List、Set、Queue和Map。这些对象类型也称为集合类，但由于Java的类库中使用了Collection这个名字来指代该类库的一个特殊子集，所以我是用了范围更广的术语“容器”称呼他们。  故">
-<meta name="keywords" content="Java,Java基础,Java集合类">
+<meta name="description" content="汉诺塔汉诺塔问题是典型的递归问题。 思路假设，现有如下汉诺塔（假装是汉诺塔），需要将 a 上的托盘移动到 c 上。 ​     0​    00   000. 0000 .    .          .    .          .​     a              b              c">
+<meta name="keywords" content="算法,汉诺塔">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java基础-集合类">
-<meta property="og:url" content="https://www.jccc.me/2019/02/28/Java基础-集合类/index.html">
+<meta property="og:title" content="算法-汉诺塔">
+<meta property="og:url" content="https://www.jccc.me/2019/03/08/算法-汉诺塔/index.html">
 <meta property="og:site_name" content="jccc">
-<meta property="og:description" content="Java集合类Java中的集合类框架集合类其实是Java中集合的广义说法，在《Java编程思想》的11章提到  ​    Java实用类库还提供了一套相当完善的容器类来解决这个问题，其中基本的数据类型是List、Set、Queue和Map。这些对象类型也称为集合类，但由于Java的类库中使用了Collection这个名字来指代该类库的一个特殊子集，所以我是用了范围更广的术语“容器”称呼他们。  故">
+<meta property="og:description" content="汉诺塔汉诺塔问题是典型的递归问题。 思路假设，现有如下汉诺塔（假装是汉诺塔），需要将 a 上的托盘移动到 c 上。 ​     0​    00   000. 0000 .    .          .    .          .​     a              b              c">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://www.jccc.me/imag/b171c70578a6d6f369066d6dfbc45555.jpg">
-<meta property="og:image" content="https://www.jccc.me/imag/LinkedList.png">
 <meta property="og:updated_time" content="2019-03-08T09:51:19.355Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java基础-集合类">
-<meta name="twitter:description" content="Java集合类Java中的集合类框架集合类其实是Java中集合的广义说法，在《Java编程思想》的11章提到  ​    Java实用类库还提供了一套相当完善的容器类来解决这个问题，其中基本的数据类型是List、Set、Queue和Map。这些对象类型也称为集合类，但由于Java的类库中使用了Collection这个名字来指代该类库的一个特殊子集，所以我是用了范围更广的术语“容器”称呼他们。  故">
-<meta name="twitter:image" content="https://www.jccc.me/imag/b171c70578a6d6f369066d6dfbc45555.jpg">
+<meta name="twitter:title" content="算法-汉诺塔">
+<meta name="twitter:description" content="汉诺塔汉诺塔问题是典型的递归问题。 思路假设，现有如下汉诺塔（假装是汉诺塔），需要将 a 上的托盘移动到 c 上。 ​     0​    00   000. 0000 .    .          .    .          .​     a              b              c">
 
 
 
@@ -123,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://www.jccc.me/2019/02/28/Java基础-集合类/">
+  <link rel="canonical" href="https://www.jccc.me/2019/03/08/算法-汉诺塔/">
 
 
 
 
 
-  <title>Java基础-集合类 | jccc</title>
+  <title>算法-汉诺塔 | jccc</title>
   
 
 
@@ -256,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.jccc.me/2019/02/28/Java基础-集合类/">
+    <link itemprop="mainEntityOfPage" href="https://www.jccc.me/2019/03/08/算法-汉诺塔/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jicong Guo">
@@ -273,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Java基础-集合类</h1>
+          <h1 class="post-title" itemprop="name headline">算法-汉诺塔</h1>
         
 
         <div class="post-meta">
@@ -285,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-28T09:30:00+08:00">
-                2019-02-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-08T15:30:00+08:00">
+                2019-03-08
               </time>
             
 
@@ -308,8 +305,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
                   </a>
                 </span>
 
@@ -345,35 +342,26 @@
       
 
       
-        <h1 id="Java集合类"><a href="#Java集合类" class="headerlink" title="Java集合类"></a>Java集合类</h1><h2 id="Java中的集合类框架"><a href="#Java中的集合类框架" class="headerlink" title="Java中的集合类框架"></a>Java中的集合类框架</h2><p><strong>集合类</strong>其实是Java中集合的广义说法，在《Java编程思想》的11章提到</p>
-<blockquote>
-<p>​    Java实用类库还提供了一套相当完善的容器类来解决这个问题，其中基本的数据类型是<strong>List</strong>、<strong>Set</strong>、<strong>Queue</strong>和<strong>Map</strong>。这些对象类型也称为集合类，但由于Java的类库中使用了Collection这个名字来指代该类库的一个特殊子集，所以我是用了范围更广的术语“容器”称呼他们。</p>
-</blockquote>
-<p>故，本文中以“集合类”称呼这些类型对象，以“集合”称呼Collection的实现类。</p>
-<p>​    集合类中基本数据类型有四种，List、Set、Queue和Map，在Java对集合类的设计时，分为了两大类型的接口Collection和Map。Controller即为集合，存储一个元素的集合，具有List、Set和Queue三种结构数据。Map为图，存储键/值对映射，仅有Map一种结构的数据。</p>
-<p><img src="/imag/b171c70578a6d6f369066d6dfbc45555.jpg" alt="img"></p>
+        <h1 id="汉诺塔"><a href="#汉诺塔" class="headerlink" title="汉诺塔"></a>汉诺塔</h1><p>汉诺塔问题是典型的递归问题。</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>假设，现有如下汉诺塔（假装是汉诺塔），需要将 a 上的托盘移动到 c 上。</p>
+<p>​     0<br>​    00<br>   000<br><u>. 0000 .</u>    <u>.          .</u>    <u>.          .</u><br>​     a              b              c     </p>
 <a id="more"></a>
-<h2 id="Collection"><a href="#Collection" class="headerlink" title="Collection"></a>Collection</h2><h3 id="List接口"><a href="#List接口" class="headerlink" title="List接口"></a>List接口</h3><p>​    List是有序可重复元素的集合，同时也称为序列，可对其中的每个元素的插入位置进行精准地控制，可以通过索引来访问元素，遍历元素。</p>
-<p>​    List接口主要实现类uml图：<img src="/imag/LinkedList.png" alt="LinkedList"></p>
-<h4 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h4><p>​    ArrayList底层通过数组实现，会随着存入元素的增加而进行动态扩容。</p>
-<p>​    关于ArrayList的详细解读，请看<a href="https://www.jccc.me/2019/02/28/Java%E5%9F%BA%E7%A1%80-ArrayList/">Java基础-ArrayList</a></p>
-<h4 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h4><p>​    LinkedList底层通过链表实现，随着元素的增加不断向链表尾部追加节点。</p>
-<p>​    关于LinkedList的详细解读，请看<a href="https://www.jccc.me/2019/02/28/Java%E5%9F%BA%E7%A1%80-LinkedList/">Java基础-LinkedList</a></p>
-<h4 id="ArrayList和LinkedList对比"><a href="#ArrayList和LinkedList对比" class="headerlink" title="ArrayList和LinkedList对比"></a>ArrayList和LinkedList对比</h4><p>同：</p>
-<ul>
-<li>两者都是<code>Collection</code>下<code>List</code>的实现类</li>
-<li>都是有序的可重复的元素集合</li>
-<li>都可以存入null值</li>
-<li>都是非同步的，多线程下不安全</li>
-</ul>
-<p>异：</p>
-<ul>
-<li>ArrayList底层是以数组形式实现，LinkedList是以链表形式实现。</li>
-<li>ArrayList实现了<code>RandomAccess</code>接口，表示是可以随机读取的，LinkedList则只能遍历读取。</li>
-<li>LinkedList实现了<code>Deque&lt;E&gt;</code>接口，为 add、poll 提供先进先出队列操作，以及其他堆栈和双端队列操作。</li>
-</ul>
-<h3 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h3><h3 id="Queue"><a href="#Queue" class="headerlink" title="Queue"></a>Queue</h3><h2 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h2><h3 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h3><p>​    key和value都可以为null</p>
-<h3 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h3><p>​    key和value都不可以为null</p>
+<p>可以转换成，把大象放进冰箱需要几步的问题</p>
+<ol>
+<li><p>打开冰箱</p>
+<p>​                      0<br>​                     00<br><u>. 0000 .</u>    <u>.  000  .</u>    <u>.          .</u><br>​     a               b              c     </p>
+</li>
+<li><p>放进大象</p>
+<p>​                      0<br>​                     00<br><u>.          .</u>     <u>.  000  .</u>    <u>. 0000 .</u><br>​     a               b              c     </p>
+</li>
+<li><p>关闭冰箱</p>
+<p>​                                     0<br>​                                    00<br>​                                   000<br><u>.          .</u>    <u>.          .</u>    <u>. 0000 .</u><br>​     a              b              c         </p>
+</li>
+</ol>
+<p>那么，每一次的移动，都可以看成是一次把大象放进冰箱。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hanoi</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        move(<span class="number">4</span>, <span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> n     汉诺塔层数</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> from  开始柱</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> help  中转柱</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> to    目标柱</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">move</span><span class="params">(<span class="keyword">int</span> n, String from, String help, String to)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">1</span>) &#123;</span><br><span class="line">            move(from, to);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 将除最底层外的其他元素移向中间柱</span></span><br><span class="line">            move(n - <span class="number">1</span>, from, to, help);</span><br><span class="line">            <span class="comment">// 将最底层元素移向目标柱</span></span><br><span class="line">            move(from, to);</span><br><span class="line">            <span class="comment">// 将中间柱的所有元素移向目标柱</span></span><br><span class="line">            move(n - <span class="number">1</span>, help, from, to);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> from  开始柱</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> to    目标柱</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">move</span><span class="params">(String from, String to)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"move the top from "</span> + from + <span class="string">" to "</span> + to);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">move the top from a to b</span><br><span class="line">move the top from a to c</span><br><span class="line">move the top from b to c</span><br><span class="line">move the top from a to b</span><br><span class="line">move the top from c to a</span><br><span class="line">move the top from c to b</span><br><span class="line">move the top from a to b</span><br><span class="line">move the top from a to c</span><br><span class="line">move the top from b to c</span><br><span class="line">move the top from b to a</span><br><span class="line">move the top from c to a</span><br><span class="line">move the top from b to c</span><br><span class="line">move the top from a to b</span><br><span class="line">move the top from a to c</span><br><span class="line">move the top from b to c</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -391,11 +379,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Java/" rel="tag"># Java</a>
+            <a href="/tags/算法/" rel="tag"># 算法</a>
           
-            <a href="/tags/Java基础/" rel="tag"># Java基础</a>
-          
-            <a href="/tags/Java集合类/" rel="tag"># Java集合类</a>
+            <a href="/tags/汉诺塔/" rel="tag"># 汉诺塔</a>
           
         </div>
       
@@ -408,8 +394,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/27/demo/" rel="next" title="Demo">
-                <i class="fa fa-chevron-left"></i> Demo
+              <a href="/2019/03/08/算法-快速排序/" rel="next" title="算法-快速排序">
+                <i class="fa fa-chevron-left"></i> 算法-快速排序
               </a>
             
           </div>
@@ -417,10 +403,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/02/28/Java基础-ArrayList/" rel="prev" title="Java基础-ArrayList">
-                Java基础-ArrayList <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -552,7 +534,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java集合类"><span class="nav-number">1.</span> <span class="nav-text">Java集合类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java中的集合类框架"><span class="nav-number">1.1.</span> <span class="nav-text">Java中的集合类框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Collection"><span class="nav-number">1.2.</span> <span class="nav-text">Collection</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#List接口"><span class="nav-number">1.2.1.</span> <span class="nav-text">List接口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ArrayList"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">ArrayList</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LinkedList"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">LinkedList</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ArrayList和LinkedList对比"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">ArrayList和LinkedList对比</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Set"><span class="nav-number">1.2.2.</span> <span class="nav-text">Set</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Queue"><span class="nav-number">1.2.3.</span> <span class="nav-text">Queue</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Map"><span class="nav-number">1.3.</span> <span class="nav-text">Map</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap"><span class="nav-number">1.3.1.</span> <span class="nav-text">HashMap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ConcurrentHashMap"><span class="nav-number">1.3.2.</span> <span class="nav-text">ConcurrentHashMap</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#汉诺塔"><span class="nav-number">1.</span> <span class="nav-text">汉诺塔</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">1.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">1.2.</span> <span class="nav-text">代码</span></a></li></ol></li></ol></div>
             
 
           </div>
