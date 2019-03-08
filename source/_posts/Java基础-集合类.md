@@ -29,7 +29,7 @@ tags: [Java,Java基础,Java集合类]
 
 ​	List是有序可重复元素的集合，同时也称为序列，可对其中的每个元素的插入位置进行精准地控制，可以通过索引来访问元素，遍历元素。
 
-​	List接口主要实现类uml图：![LinkedList](/imag/LinkedList-1551342550459.png)
+​	List接口主要实现类uml图：![LinkedList](/imag/LinkedList.png)
 
 #### ArrayList
 
