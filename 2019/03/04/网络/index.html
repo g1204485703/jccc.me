@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Java,Java基础,Java集合类,">
+  <meta name="keywords" content="网络，tcp，udp,">
 
 
 
@@ -79,21 +79,22 @@
 
 
 
-<meta name="description" content="Java集合类Java中的集合类框架集合类其实是Java中集合的广义说法，在《Java编程思想》的11章提到  ​    Java实用类库还提供了一套相当完善的容器类来解决这个问题，其中基本的数据类型是List、Set、Queue和Map。这些对象类型也称为集合类，但由于Java的类库中使用了Collection这个名字来指代该类库的一个特殊子集，所以我是用了范围更广的术语“容器”称呼他们。  故">
-<meta name="keywords" content="Java,Java基础,Java集合类">
+<meta name="description" content="网络体系结构网络架构">
+<meta name="keywords" content="网络，tcp，udp">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java基础-集合类">
-<meta property="og:url" content="https://www.jccc.me/2019/02/28/Java基础-集合类/index.html">
+<meta property="og:title" content="网络">
+<meta property="og:url" content="https://www.jccc.me/2019/03/04/网络/index.html">
 <meta property="og:site_name" content="jccc">
-<meta property="og:description" content="Java集合类Java中的集合类框架集合类其实是Java中集合的广义说法，在《Java编程思想》的11章提到  ​    Java实用类库还提供了一套相当完善的容器类来解决这个问题，其中基本的数据类型是List、Set、Queue和Map。这些对象类型也称为集合类，但由于Java的类库中使用了Collection这个名字来指代该类库的一个特殊子集，所以我是用了范围更广的术语“容器”称呼他们。  故">
+<meta property="og:description" content="网络体系结构网络架构">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://www.jccc.me/imag/b171c70578a6d6f369066d6dfbc45555.jpg">
-<meta property="og:image" content="https://www.jccc.me/imag/LinkedList.png">
+<meta property="og:image" content="https://www.jccc.me/imag/1628186c40210f2e">
+<meta property="og:image" content="https://www.jccc.me/imag/1552292299878.png">
+<meta property="og:image" content="https://www.jccc.me/2019/03/04/网络/imag/Deconnection_TCP.png">
 <meta property="og:updated_time" content="2019-03-11T09:22:45.151Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java基础-集合类">
-<meta name="twitter:description" content="Java集合类Java中的集合类框架集合类其实是Java中集合的广义说法，在《Java编程思想》的11章提到  ​    Java实用类库还提供了一套相当完善的容器类来解决这个问题，其中基本的数据类型是List、Set、Queue和Map。这些对象类型也称为集合类，但由于Java的类库中使用了Collection这个名字来指代该类库的一个特殊子集，所以我是用了范围更广的术语“容器”称呼他们。  故">
-<meta name="twitter:image" content="https://www.jccc.me/imag/b171c70578a6d6f369066d6dfbc45555.jpg">
+<meta name="twitter:title" content="网络">
+<meta name="twitter:description" content="网络体系结构网络架构">
+<meta name="twitter:image" content="https://www.jccc.me/imag/1628186c40210f2e">
 
 
 
@@ -123,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="https://www.jccc.me/2019/02/28/Java基础-集合类/">
+  <link rel="canonical" href="https://www.jccc.me/2019/03/04/网络/">
 
 
 
 
 
-  <title>Java基础-集合类 | jccc</title>
+  <title>网络 | jccc</title>
   
 
 
@@ -256,7 +257,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.jccc.me/2019/02/28/Java基础-集合类/">
+    <link itemprop="mainEntityOfPage" href="https://www.jccc.me/2019/03/04/网络/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jicong Guo">
@@ -273,7 +274,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Java基础-集合类</h1>
+          <h1 class="post-title" itemprop="name headline">网络</h1>
         
 
         <div class="post-meta">
@@ -285,8 +286,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-28T09:30:00+08:00">
-                2019-02-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-04T09:30:00+08:00">
+                2019-03-04
               </time>
             
 
@@ -345,35 +346,40 @@
       
 
       
-        <h1 id="Java集合类"><a href="#Java集合类" class="headerlink" title="Java集合类"></a>Java集合类</h1><h2 id="Java中的集合类框架"><a href="#Java中的集合类框架" class="headerlink" title="Java中的集合类框架"></a>Java中的集合类框架</h2><p><strong>集合类</strong>其实是Java中集合的广义说法，在《Java编程思想》的11章提到</p>
-<blockquote>
-<p>​    Java实用类库还提供了一套相当完善的容器类来解决这个问题，其中基本的数据类型是<strong>List</strong>、<strong>Set</strong>、<strong>Queue</strong>和<strong>Map</strong>。这些对象类型也称为集合类，但由于Java的类库中使用了Collection这个名字来指代该类库的一个特殊子集，所以我是用了范围更广的术语“容器”称呼他们。</p>
-</blockquote>
-<p>故，本文中以“集合类”称呼这些类型对象，以“集合”称呼Collection的实现类。</p>
-<p>​    集合类中基本数据类型有四种，List、Set、Queue和Map，在Java对集合类的设计时，分为了两大类型的接口Collection和Map。Controller即为集合，存储一个元素的集合，具有List、Set和Queue三种结构数据。Map为图，存储键/值对映射，仅有Map一种结构的数据。</p>
-<p><img src="/imag/b171c70578a6d6f369066d6dfbc45555.jpg" alt="img"></p>
+        <h1 id="网络体系结构"><a href="#网络体系结构" class="headerlink" title="网络体系结构"></a>网络体系结构</h1><h2 id="网络架构"><a href="#网络架构" class="headerlink" title="网络架构"></a>网络架构</h2><p><img src="/imag/1628186c40210f2e" alt="img"></p>
 <a id="more"></a>
-<h2 id="Collection"><a href="#Collection" class="headerlink" title="Collection"></a>Collection</h2><h3 id="List接口"><a href="#List接口" class="headerlink" title="List接口"></a>List接口</h3><p>​    List是有序可重复元素的集合，同时也称为序列，可对其中的每个元素的插入位置进行精准地控制，可以通过索引来访问元素，遍历元素。</p>
-<p>​    List接口主要实现类uml图：<img src="/imag/LinkedList.png" alt="LinkedList"></p>
-<h4 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h4><p>​    ArrayList底层通过数组实现，会随着存入元素的增加而进行动态扩容。</p>
-<p>​    关于ArrayList的详细解读，请看<a href="https://www.jccc.me/2019/02/28/Java%E5%9F%BA%E7%A1%80-ArrayList/">Java基础-ArrayList</a></p>
-<h4 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h4><p>​    LinkedList底层通过链表实现，随着元素的增加不断向链表尾部追加节点。</p>
-<p>​    关于LinkedList的详细解读，请看<a href="https://www.jccc.me/2019/02/28/Java%E5%9F%BA%E7%A1%80-LinkedList/">Java基础-LinkedList</a></p>
-<h4 id="ArrayList和LinkedList对比"><a href="#ArrayList和LinkedList对比" class="headerlink" title="ArrayList和LinkedList对比"></a>ArrayList和LinkedList对比</h4><p>同：</p>
-<ul>
-<li>两者都是<code>Collection</code>下<code>List</code>的实现类</li>
-<li>都是有序的可重复的元素集合</li>
-<li>都可以存入null值</li>
-<li>都是非同步的，多线程下不安全</li>
+<h3 id="OSI的七层协议"><a href="#OSI的七层协议" class="headerlink" title="OSI的七层协议"></a>OSI的七层协议</h3><h4 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h4><p>应用层提供为应用软件而设的接口，以设置与另一应用软件之间的通信。例如：HTTP，HTTPS，FTP，TELNET，SSH，SMTP，POP3等</p>
+<h4 id="表示层"><a href="#表示层" class="headerlink" title="表示层"></a>表示层</h4><p>表示层把数据转换为能与接收者的系统格式兼容并适合传输的格式。</p>
+<h4 id="会话层"><a href="#会话层" class="headerlink" title="会话层"></a>会话层</h4><p>会话层负责在数据传输中设置和维护计算机网络中两台计算机之间的通信连接。</p>
+<h4 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h4><p>传输层把传输表头（TH）加至数据以形成数据包。</p>
+<h4 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h4><p>网络层决定数据的路径选择和转寄，将网络表头（NH）加至数据包，以形成分组。网络表头包含了网络数据。例如：互联网协议（IP）等。</p>
+<h4 id="数据链路层"><a href="#数据链路层" class="headerlink" title="数据链路层"></a>数据链路层</h4><p>数据链路层负责网络寻址，错误侦测和改错。当表头和表尾被加至数据包时，会形成帧。</p>
+<h4 id="物理层"><a href="#物理层" class="headerlink" title="物理层"></a>物理层</h4><p>物理层在局域网上传送数据帧，它负责管理计算机通信设备和网络媒体之间的互通。</p>
+<h2 id="传输层协议"><a href="#传输层协议" class="headerlink" title="传输层协议"></a>传输层协议</h2><h3 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h3><p>TCP提供一种面向连接的、可靠的字节流服务</p>
+<h4 id="保证可靠"><a href="#保证可靠" class="headerlink" title="保证可靠"></a>保证可靠</h4><p>依赖超时重传，重复累计确认保证可靠性。</p>
+<h4 id="TCP三次握手"><a href="#TCP三次握手" class="headerlink" title="TCP三次握手"></a>TCP三次握手</h4><p><img src="/imag/1552292299878.png" alt="1552292299878"></p>
+<ol>
+<li>客户端通过向服务端发送一个<strong>SYN</strong>来创建一个主动打开，作为三路握手的一部分。客户端把这段连接的序号设定为随机数<strong>A</strong>。</li>
+<li>服务端应当为一个合法的<strong>SYN</strong>回送一个<strong>SYN</strong>/<strong>ACK</strong>。<strong>ACK</strong>的确认码应为<strong>A+1</strong>，<strong>SYN</strong>/<strong>ACK</strong>包本身又有一个随机产生的序号<strong>B</strong>。</li>
+<li>最后，客户端再发送一个<strong>ACK</strong>。当服务端收到这个<strong>ACK</strong>的时候，就完成了三路握手，并进入了连接创建状态。此时包序号被设定为收到的确认号<strong>A+1</strong>,相应号则为<strong>B+1</strong>。</li>
+</ol>
+<p>如果在第三步时，服务端没有收到客户端发送的<strong>ACK</strong>，此时连接处于一个中间状态，即没有成功，也没有失败。服务端会在一段时间内重发<strong>SYN</strong>/<strong>ACK</strong>。在Linux下，默认会重试5次，重试的间隔时间从1s开始翻倍，即5次的重试间隔为1s，2s，4s，8s，16s，最后一次16s的重试需要在32s后才能得知超时，即一共需要63s，TCP才会断开这个连接。</p>
+<h4 id="TCP四次挥手"><a href="#TCP四次挥手" class="headerlink" title="TCP四次挥手"></a>TCP四次挥手</h4><p>终结连接的操作客户端和服务端都可以发起。</p>
+<p>以客户端发起举例：</p>
+<ol>
+<li>客户端完成信息发送，则对服务端发送<strong>FIN</strong>表示终结连接，表示客户端已经没有数据要发送给服务端了，进入<strong>FIN_WAIT_1</strong>状态。可以继续接收来自服务端的数据。</li>
+<li>服务端接收到<strong>FIN</strong>请求后，返回<strong>ACK</strong>表示确认。此时客户端进入<strong>FIN_WAIT_2</strong>状态。</li>
+<li>服务端在数据发送完成后，向客户端发送<strong>FIN</strong>请求终结连接。</li>
+<li>客户端向服务端返回<strong>ACK</strong>，并进入<strong>TIME_WAIT</strong>状态。等待<strong>2MSL</strong>（最大报文生存时间），后客户端关闭连接。服务端则在收到<strong>ACK</strong>后就关闭连接。</li>
+</ol>
+<p><img src="imag/Deconnection_TCP.png" alt="Deconnection_TCP"></p>
+<h4 id="为什么连接是三次握手，终结却是四次挥手？"><a href="#为什么连接是三次握手，终结却是四次挥手？" class="headerlink" title="为什么连接是三次握手，终结却是四次挥手？"></a>为什么连接是三次握手，终结却是四次挥手？</h4><p>创建连接时，客户端向服务端发送SYN连接报文后，服务端可以同时将ACK+SYN报文发送给客户端，其中ACK用于应答客户端的连接请求，SYN用于同步。在关闭连接的时候，服务端收到FIN报文时，并不一定自身也是可关闭状态，所以先发送一个ACK，应答客户端的FIN请求，并在数据发送完成后，再发送FIN请求。</p>
+<h4 id="为什么TIME-WAIT状态需要经过2MSL（最大报文生存时间）才能返回到CLOSE状态？"><a href="#为什么TIME-WAIT状态需要经过2MSL（最大报文生存时间）才能返回到CLOSE状态？" class="headerlink" title="为什么TIME_WAIT状态需要经过2MSL（最大报文生存时间）才能返回到CLOSE状态？"></a>为什么TIME_WAIT状态需要经过2MSL（最大报文生存时间）才能返回到CLOSE状态？</h4><ul>
+<li>保证最后发送的ACK能够到达服务端。</li>
+<li>防止本次的已经失效的报文段出现再下一个新的连接中。</li>
 </ul>
-<p>异：</p>
-<ul>
-<li>ArrayList底层是以数组形式实现，LinkedList是以链表形式实现。</li>
-<li>ArrayList实现了<code>RandomAccess</code>接口，表示是可以随机读取的，LinkedList则只能遍历读取。</li>
-<li>LinkedList实现了<code>Deque&lt;E&gt;</code>接口，为 add、poll 提供先进先出队列操作，以及其他堆栈和双端队列操作。</li>
-</ul>
-<h3 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h3><h3 id="Queue"><a href="#Queue" class="headerlink" title="Queue"></a>Queue</h3><h2 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h2><h3 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h3><p>​    key和value都可以为null</p>
-<h3 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h3><p>​    key和value都不可以为null</p>
+<h3 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h3><p>用户数据包协议（英语：User  Datagram Protocol，缩写：UDP），又称用户数据包协议，是一个简单的面向数据报的传输层协议。</p>
+<p>在TCP/IP模型中，UDP为网络层以上和应用层以下提供了一个简单的接口。UDP只提供数据的不可靠传递，它一旦把应用程序发给网络层的数据发送出去，就不保留数据备份（所以UDP有时候也被认为是不可靠的数据报协议）。UDP在IP数据报的头部仅仅加入了复用和数据校验（字段）。</p>
 
       
     </div>
@@ -391,11 +397,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Java/" rel="tag"># Java</a>
-          
-            <a href="/tags/Java基础/" rel="tag"># Java基础</a>
-          
-            <a href="/tags/Java集合类/" rel="tag"># Java集合类</a>
+            <a href="/tags/网络，tcp，udp/" rel="tag"># 网络，tcp，udp</a>
           
         </div>
       
@@ -408,8 +410,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/27/demo/" rel="next" title="Demo">
-                <i class="fa fa-chevron-left"></i> Demo
+              <a href="/2019/02/28/Java基础-ArrayList/" rel="next" title="Java基础-ArrayList">
+                <i class="fa fa-chevron-left"></i> Java基础-ArrayList
               </a>
             
           </div>
@@ -418,8 +420,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/02/28/Java基础-ArrayList/" rel="prev" title="Java基础-ArrayList">
-                Java基础-ArrayList <i class="fa fa-chevron-right"></i>
+              <a href="/2019/03/04/Java基础-LinkedList/" rel="prev" title="Java基础-LinkedList">
+                Java基础-LinkedList <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -552,7 +554,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java集合类"><span class="nav-number">1.</span> <span class="nav-text">Java集合类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java中的集合类框架"><span class="nav-number">1.1.</span> <span class="nav-text">Java中的集合类框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Collection"><span class="nav-number">1.2.</span> <span class="nav-text">Collection</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#List接口"><span class="nav-number">1.2.1.</span> <span class="nav-text">List接口</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ArrayList"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">ArrayList</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LinkedList"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">LinkedList</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ArrayList和LinkedList对比"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">ArrayList和LinkedList对比</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Set"><span class="nav-number">1.2.2.</span> <span class="nav-text">Set</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Queue"><span class="nav-number">1.2.3.</span> <span class="nav-text">Queue</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Map"><span class="nav-number">1.3.</span> <span class="nav-text">Map</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap"><span class="nav-number">1.3.1.</span> <span class="nav-text">HashMap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ConcurrentHashMap"><span class="nav-number">1.3.2.</span> <span class="nav-text">ConcurrentHashMap</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#网络体系结构"><span class="nav-number">1.</span> <span class="nav-text">网络体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#网络架构"><span class="nav-number">1.1.</span> <span class="nav-text">网络架构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#OSI的七层协议"><span class="nav-number">1.1.1.</span> <span class="nav-text">OSI的七层协议</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#应用层"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">应用层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#表示层"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">表示层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#会话层"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">会话层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#传输层"><span class="nav-number">1.1.1.4.</span> <span class="nav-text">传输层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网络层"><span class="nav-number">1.1.1.5.</span> <span class="nav-text">网络层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据链路层"><span class="nav-number">1.1.1.6.</span> <span class="nav-text">数据链路层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#物理层"><span class="nav-number">1.1.1.7.</span> <span class="nav-text">物理层</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#传输层协议"><span class="nav-number">1.2.</span> <span class="nav-text">传输层协议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP"><span class="nav-number">1.2.1.</span> <span class="nav-text">TCP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#保证可靠"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">保证可靠</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TCP三次握手"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">TCP三次握手</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TCP四次挥手"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">TCP四次挥手</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么连接是三次握手，终结却是四次挥手？"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">为什么连接是三次握手，终结却是四次挥手？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么TIME-WAIT状态需要经过2MSL（最大报文生存时间）才能返回到CLOSE状态？"><span class="nav-number">1.2.1.5.</span> <span class="nav-text">为什么TIME_WAIT状态需要经过2MSL（最大报文生存时间）才能返回到CLOSE状态？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UDP"><span class="nav-number">1.2.2.</span> <span class="nav-text">UDP</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

@@ -492,50 +492,15 @@
 
       
         
-          
-            <h1 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h1><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>快速排序主要利用分治思想，一次排序准确定位单个值的位置，此值作为基准值。</p>
+          <h1 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h1><h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>快速排序主要利用分治思想，一次排序准确定位单个值的位置，此值作为基准值。</p>
 <p>在坏的情况下，每次排序都是相邻的两个数进行了交换。因此快速排序的差时间复杂度和冒泡排序是一样的，都是 O(N^2)，它的平均时间复杂度为 O (NlogN)。</p>
-<p>以数组 num[2，1，9，4，3，0，7] 为例，模拟快排算法的过程</p>
-<ul>
-<li>对整个数组进行排序，基准值为左侧第一位 2<ul>
-<li>第一次值交换<ul>
-<li>从右边界 num[5] 开始查找比 2 小的数值，发现 num[5] = 0 是第一个小于2的值</li>
-<li>然后从左边界 num[0] 开始查找比 2 大的数值，发现 num[2] = 9 是第一个大于2的值</li>
-<li>交换位置，数组变成 num[2，1，0，4，3，9，7]</li>
-</ul>
-</li>
-<li>第二次值交换<ul>
-<li>从右侧 num[4] 继续查找比 2 小的数值，一直找到 num[2] 左查找下标</li>
-<li>此时左查找下标与右查找下标相遇，说明右侧没有比 2 小的值了</li>
-<li>将 num[2] 与基准值交换，完成第一个基准值的定位，数组变成 [0，1，2，4，3，9，7]</li>
-<li>开始对基准值左侧的数组进行排序，即 [0，1]<ul>
-<li>同样，以首位 0 作为基准值，开始查找排序，最终获得 [0，1]</li>
-<li>此时数组变成 [0，1，2，4，3，9]</li>
-</ul>
-</li>
-<li>开始对基准值右侧的数组进行排序，即 [4，3，9，7]<ul>
-<li>排序获得 [3，4，9，7]<ul>
-<li>左侧只有 [3] 不需要排序</li>
-<li>右侧是 [4，9，7] 开始排序<ul>
-<li>排序获得 [4，7，9]</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>此时数组变成 [0，1，2，3，4，7，9]</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>排序完成</p>
-<h2 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">QuickSort</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] temp;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        temp = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">20</span>];</span><br><span class="line">        <span class="comment">// 随机赋值</span></span><br><span class="line">        System.out.println(<span class="string">"before sort"</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; temp.length; i++) &#123;</span><br><span class="line">            temp[i] = (<span class="keyword">int</span>) (Math.random() * <span class="number">2000</span>);</span><br><span class="line">            System.out.print(temp[i] + <span class="string">" "</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 开始排序</span></span><br><span class="line">        sort(<span class="number">0</span>, temp.length - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"after sort"</span>);</span><br><span class="line">        <span class="comment">// 输出排序结果</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; temp.length; i++) &#123;</span><br><span class="line">            System.out.print(temp[i] + <span class="string">" "</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(<span class="keyword">int</span> left, <span class="keyword">int</span> right)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 将左右边界赋值给左右查找下标</span></span><br><span class="line">        <span class="keyword">int</span> lIndex = left;</span><br><span class="line">        <span class="keyword">int</span> rIndex = right;</span><br><span class="line">        <span class="comment">// 当左查找下标小于或等于右查找下标时，结束递归</span></span><br><span class="line">        <span class="keyword">if</span> (rIndex &lt;= lIndex)</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        <span class="comment">// 基准值</span></span><br><span class="line">        <span class="keyword">int</span> stand = temp[lIndex];</span><br><span class="line">        <span class="comment">// 仅当左边界小于右边界时，参考基准值对数组进行值交换</span></span><br><span class="line">        <span class="keyword">while</span> (lIndex &lt; rIndex) &#123;</span><br><span class="line">            <span class="comment">// 从右边界开始查找比基准值小的值</span></span><br><span class="line">            <span class="keyword">while</span> (temp[rIndex] &gt;= stand &amp;&amp; lIndex &lt; rIndex)</span><br><span class="line">                rIndex--;</span><br><span class="line">            <span class="comment">// 从左边界开始查找比基准值大的值</span></span><br><span class="line">            <span class="keyword">while</span> (temp[lIndex] &lt;= stand &amp;&amp; lIndex &lt; rIndex)</span><br><span class="line">                lIndex++;</span><br><span class="line">            <span class="comment">// 将 右边 小于基准值的值 与 左边 大于基准值的值 进行交换</span></span><br><span class="line">            <span class="keyword">if</span> (rIndex &gt; lIndex) &#123;</span><br><span class="line">                temp[rIndex] = temp[lIndex] + temp[rIndex];</span><br><span class="line">                temp[lIndex] = temp[rIndex] - temp[lIndex];</span><br><span class="line">                temp[rIndex] = temp[rIndex] - temp[lIndex];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 因为查找是从右边开始，故最终两个查找下标相遇的值必定比基准值小</span></span><br><span class="line">        <span class="comment">// 所以将相遇下标值与基准值交换</span></span><br><span class="line">        <span class="comment">// 完成对基准值的定位</span></span><br><span class="line">        temp[left] = temp[lIndex];</span><br><span class="line">        temp[lIndex] = stand;</span><br><span class="line">        <span class="comment">// 对基准值左侧的数组进行递归排序</span></span><br><span class="line">        sort(left, lIndex - <span class="number">1</span>);</span><br><span class="line">        <span class="comment">// 对基准值右侧的数组进行递归排序</span></span><br><span class="line">        sort(lIndex + <span class="number">1</span>, right);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>测试输出</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">before sort</span><br><span class="line"><span class="number">1395</span> <span class="number">9</span> <span class="number">1010</span> <span class="number">749</span> <span class="number">1869</span> <span class="number">919</span> <span class="number">197</span> <span class="number">711</span> <span class="number">284</span> <span class="number">1940</span> <span class="number">799</span> <span class="number">1208</span> <span class="number">118</span> <span class="number">503</span> <span class="number">500</span> <span class="number">1226</span> <span class="number">1041</span> <span class="number">1084</span> <span class="number">1598</span> <span class="number">649</span> </span><br><span class="line">after sort</span><br><span class="line"><span class="number">9</span> <span class="number">118</span> <span class="number">197</span> <span class="number">284</span> <span class="number">500</span> <span class="number">503</span> <span class="number">649</span> <span class="number">711</span> <span class="number">749</span> <span class="number">799</span> <span class="number">919</span> <span class="number">1010</span> <span class="number">1041</span> <span class="number">1084</span> <span class="number">1208</span> <span class="number">1226</span> <span class="number">1395</span> <span class="number">1598</span> <span class="number">1869</span> <span class="number">1940</span></span><br></pre></td></tr></table></figure>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/08/算法-快速排序/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1031,7 +996,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.jccc.me/2019/03/04/网络-Http/">
+    <link itemprop="mainEntityOfPage" href="https://www.jccc.me/2019/03/04/网络/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jicong Guo">
@@ -1050,7 +1015,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/03/04/网络-Http/" itemprop="url">网络-Http</a></h1>
+                <a class="post-title-link" href="/2019/03/04/网络/" itemprop="url">网络</a></h1>
         
 
         <div class="post-meta">
@@ -1123,9 +1088,14 @@
 
       
         
-          
-            
-          
+          <h1 id="网络体系结构"><a href="#网络体系结构" class="headerlink" title="网络体系结构"></a>网络体系结构</h1><h2 id="网络架构"><a href="#网络架构" class="headerlink" title="网络架构"></a>网络架构</h2><p><img src="/imag/1628186c40210f2e" alt="img"></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/04/网络/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1782,7 +1752,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

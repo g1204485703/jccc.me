@@ -92,7 +92,7 @@
 <meta property="og:image" content="https://www.jccc.me/2019/03/07/数据结构-树/imag/1630488-79802447d1d63c9b.webp">
 <meta property="og:image" content="https://www.jccc.me/2019/03/07/数据结构-树/imag/300px-Binary_search_tree.svg.png">
 <meta property="og:image" content="https://www.jccc.me/2019/03/07/数据结构-树/imag/1.png">
-<meta property="og:updated_time" content="2019-03-08T09:51:19.355Z">
+<meta property="og:updated_time" content="2019-03-11T09:22:45.151Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据结构-树">
 <meta name="twitter:description" content="数据结构-树定义​    树在维基百科中如下定义  ​    树是一种抽象数据结构或是实现这种抽象数据类型的数据结构，用来模拟具有树状结构性质的数据集合。它是由n（n&amp;gt;0）个有限节点组成的一个具有层次关系的集合。把它叫做”树“是因为它看起来像一颗倒挂的树，也就是说它是根朝上，也叶朝下的。">
@@ -381,7 +381,7 @@
 <p><img src="/imag/192px-Binary_tree.svg.png" alt="img"></p>
 <h5 id="完全二叉树"><a href="#完全二叉树" class="headerlink" title="完全二叉树"></a>完全二叉树</h5><p>​    对于一颗二叉树，假设其深度为d（d&gt;1）。除了第d层外，其他各层的节点数目均已达最大值，且第d层所有节点从左到右连续地紧密排列，这样的二叉树称为完全二叉树。</p>
 <p><img src="imag/1630488-79802447d1d63c9b.webp" alt="img"></p>
-<h5 id="排序二叉树（二叉查找树）"><a href="#排序二叉树（二叉查找树）" class="headerlink" title="排序二叉树（二叉查找树）"></a>排序二叉树（二叉查找树）</h5><p>指一颗空树或者具有下列性质的二叉树</p>
+<h5 id="排序二叉树（二叉查找树）"><a href="#排序二叉树（二叉查找树）" class="headerlink" title="排序二叉树（二叉查找树）"></a>排序二叉树（二叉查找树）</h5><h6 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h6><p>指一颗空树或者具有下列性质的二叉树</p>
 <ul>
 <li>若任意节点的左子树不空，则左子树上所有的节点的值均小于它的根节点的值</li>
 <li>若任意节点的右子树不空，则右子树上所有的节点的值均大于它的根节点的值</li>
@@ -389,8 +389,28 @@
 <li>没有任何键值相等的节点</li>
 </ul>
 <p><img src="imag/300px-Binary_search_tree.svg.png" alt="tree.svg"></p>
+<h6 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h6><p>查找：</p>
+<ul>
+<li>比较根节点，相等即返回；若根节点为空，则说明树也为空，也返回</li>
+<li>若比根节点的值小，则往左子树递归查找</li>
+<li>若比根节点的值大，则往右子树递归查找</li>
+</ul>
+<p>插入：</p>
+<ul>
+<li>插入操作前执行查找操作</li>
+<li>若找到元素，则无需插入；若未找到元素，则在查找操作的最后节点进行判断插入。</li>
+</ul>
+<p>删除：</p>
+<ul>
+<li>如果要删除的节点是叶子节点，直接删除即可</li>
+<li>如果要删除的节点不是叶子节点<ul>
+<li>如果只有左子树或者右子树，则直接将子树作为根节点。</li>
+<li>如果有两个子树，则取左子树的最大值或者右子树的最小值作为新的根节点。</li>
+</ul>
+</li>
+</ul>
 <h5 id="平衡二叉树"><a href="#平衡二叉树" class="headerlink" title="平衡二叉树"></a>平衡二叉树</h5><p>​    当且仅当任何节点的两颗子树的高度差不大于1的二叉树</p>
-<h6 id="AVL树"><a href="#AVL树" class="headerlink" title="AVL树"></a>AVL树</h6><h6 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h6><p>红黑树是每个节点都带有颜色属性的二叉查找树，颜色为红色或者黑色。</p>
+<h5 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h5><p>红黑树是每个节点都带有颜色属性的二叉查找树，颜色为红色或者黑色。</p>
 <p>特性</p>
 <ul>
 <li><p>根节点是黑色</p>
@@ -549,7 +569,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -582,7 +602,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据结构-树"><span class="nav-number">1.</span> <span class="nav-text">数据结构-树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特点"><span class="nav-number">1.2.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#术语"><span class="nav-number">1.3.</span> <span class="nav-text">术语</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#节点的度"><span class="nav-number">1.3.1.</span> <span class="nav-text">节点的度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#树的度"><span class="nav-number">1.3.2.</span> <span class="nav-text">树的度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#叶节点（终端节点）"><span class="nav-number">1.3.3.</span> <span class="nav-text">叶节点（终端节点）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分支节点（非终端节点）"><span class="nav-number">1.3.4.</span> <span class="nav-text">分支节点（非终端节点）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#父节点（父亲节点）"><span class="nav-number">1.3.5.</span> <span class="nav-text">父节点（父亲节点）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#子节点（孩子节点）"><span class="nav-number">1.3.6.</span> <span class="nav-text">子节点（孩子节点）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#兄弟节点"><span class="nav-number">1.3.7.</span> <span class="nav-text">兄弟节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#节点的层次"><span class="nav-number">1.3.8.</span> <span class="nav-text">节点的层次</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深度"><span class="nav-number">1.3.9.</span> <span class="nav-text">深度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高度"><span class="nav-number">1.3.10.</span> <span class="nav-text">高度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#堂兄弟节点"><span class="nav-number">1.3.11.</span> <span class="nav-text">堂兄弟节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#节点的祖先"><span class="nav-number">1.3.12.</span> <span class="nav-text">节点的祖先</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#子孙"><span class="nav-number">1.3.13.</span> <span class="nav-text">子孙</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#森林"><span class="nav-number">1.3.14.</span> <span class="nav-text">森林</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#树的分类"><span class="nav-number">1.4.</span> <span class="nav-text">树的分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#无序树"><span class="nav-number">1.4.1.</span> <span class="nav-text">无序树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有序树"><span class="nav-number">1.4.2.</span> <span class="nav-text">有序树</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#二叉树"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">二叉树</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#完全二叉树"><span class="nav-number">1.4.2.1.1.</span> <span class="nav-text">完全二叉树</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#排序二叉树（二叉查找树）"><span class="nav-number">1.4.2.1.2.</span> <span class="nav-text">排序二叉树（二叉查找树）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#平衡二叉树"><span class="nav-number">1.4.2.1.3.</span> <span class="nav-text">平衡二叉树</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#AVL树"><span class="nav-number">1.4.2.1.3.1.</span> <span class="nav-text">AVL树</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#红黑树"><span class="nav-number">1.4.2.1.3.2.</span> <span class="nav-text">红黑树</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据结构-树"><span class="nav-number">1.</span> <span class="nav-text">数据结构-树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义"><span class="nav-number">1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特点"><span class="nav-number">1.2.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#术语"><span class="nav-number">1.3.</span> <span class="nav-text">术语</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#节点的度"><span class="nav-number">1.3.1.</span> <span class="nav-text">节点的度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#树的度"><span class="nav-number">1.3.2.</span> <span class="nav-text">树的度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#叶节点（终端节点）"><span class="nav-number">1.3.3.</span> <span class="nav-text">叶节点（终端节点）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分支节点（非终端节点）"><span class="nav-number">1.3.4.</span> <span class="nav-text">分支节点（非终端节点）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#父节点（父亲节点）"><span class="nav-number">1.3.5.</span> <span class="nav-text">父节点（父亲节点）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#子节点（孩子节点）"><span class="nav-number">1.3.6.</span> <span class="nav-text">子节点（孩子节点）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#兄弟节点"><span class="nav-number">1.3.7.</span> <span class="nav-text">兄弟节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#节点的层次"><span class="nav-number">1.3.8.</span> <span class="nav-text">节点的层次</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深度"><span class="nav-number">1.3.9.</span> <span class="nav-text">深度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高度"><span class="nav-number">1.3.10.</span> <span class="nav-text">高度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#堂兄弟节点"><span class="nav-number">1.3.11.</span> <span class="nav-text">堂兄弟节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#节点的祖先"><span class="nav-number">1.3.12.</span> <span class="nav-text">节点的祖先</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#子孙"><span class="nav-number">1.3.13.</span> <span class="nav-text">子孙</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#森林"><span class="nav-number">1.3.14.</span> <span class="nav-text">森林</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#树的分类"><span class="nav-number">1.4.</span> <span class="nav-text">树的分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#无序树"><span class="nav-number">1.4.1.</span> <span class="nav-text">无序树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有序树"><span class="nav-number">1.4.2.</span> <span class="nav-text">有序树</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#二叉树"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">二叉树</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#完全二叉树"><span class="nav-number">1.4.2.1.1.</span> <span class="nav-text">完全二叉树</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#排序二叉树（二叉查找树）"><span class="nav-number">1.4.2.1.2.</span> <span class="nav-text">排序二叉树（二叉查找树）</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#定义-1"><span class="nav-number">1.4.2.1.2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#操作"><span class="nav-number">1.4.2.1.2.2.</span> <span class="nav-text">操作</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#平衡二叉树"><span class="nav-number">1.4.2.1.3.</span> <span class="nav-text">平衡二叉树</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#红黑树"><span class="nav-number">1.4.2.1.4.</span> <span class="nav-text">红黑树</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
