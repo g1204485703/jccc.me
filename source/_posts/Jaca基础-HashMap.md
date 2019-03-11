@@ -171,20 +171,23 @@ final V putVal(int hash, K key, V value, boolean onlyIfAbsent,boolean evict) {
     return null;
 }
 
-/**
- * Tree version of putVal.
- */
+/** 向红黑树中添加元素 */
 final TreeNode<K,V> putTreeVal(HashMap<K,V> map, Node<K,V>[] tab,
                                int h, K k, V v) {
     Class<?> kc = null;
     boolean searched = false;
+    // 获取红黑树的根节点
     TreeNode<K,V> root = (parent != null) ? root() : this;
+    // 从根节点开始循环，寻找位置添加元素
     for (TreeNode<K,V> p = root;;) {
         int dir, ph; K pk;
+        // 当前节点hash值大于要插入元素的哈希值，将向左子树查找
         if ((ph = p.hash) > h)
             dir = -1;
+        // 当前节点hash值小于要插入元素的哈希值，将向右子树查找
         else if (ph < h)
             dir = 1;
+        // 要插入元素的key与当前节点的key相同
         else if ((pk = p.key) == k || (k != null && k.equals(pk)))
             return p;
         else if ((kc == null &&
@@ -226,11 +229,14 @@ final TreeNode<K,V> putTreeVal(HashMap<K,V> map, Node<K,V>[] tab,
 ```Java
 final Node<K,V>[] resize() {
     Node<K,V>[] oldTab = table;
+    // 旧容量
     int oldCap = (oldTab == null) ? 0 : oldTab.length;
+    // 旧扩容阈值
     int oldThr = threshold;
     int newCap, newThr = 0;
     // 非首次扩容
     if (oldCap > 0) {
+        // 如果旧容量
         if (oldCap >= MAXIMUM_CAPACITY) {
             threshold = Integer.MAX_VALUE;
             return oldTab;
