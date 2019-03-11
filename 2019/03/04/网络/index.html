@@ -89,8 +89,8 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://www.jccc.me/imag/1628186c40210f2e">
 <meta property="og:image" content="https://www.jccc.me/imag/1552292299878.png">
-<meta property="og:image" content="https://www.jccc.me/2019/03/04/网络/imag/Deconnection_TCP.png">
-<meta property="og:updated_time" content="2019-03-11T09:22:45.151Z">
+<meta property="og:image" content="https://www.jccc.me/imag/Deconnection_TCP.png">
+<meta property="og:updated_time" content="2019-03-11T13:57:09.521Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网络">
 <meta name="twitter:description" content="网络体系结构网络架构">
@@ -372,7 +372,7 @@
 <li>服务端在数据发送完成后，向客户端发送<strong>FIN</strong>请求终结连接。</li>
 <li>客户端向服务端返回<strong>ACK</strong>，并进入<strong>TIME_WAIT</strong>状态。等待<strong>2MSL</strong>（最大报文生存时间），后客户端关闭连接。服务端则在收到<strong>ACK</strong>后就关闭连接。</li>
 </ol>
-<p><img src="imag/Deconnection_TCP.png" alt="Deconnection_TCP"></p>
+<p><img src="/imag/Deconnection_TCP.png" alt="Deconnection_TCP"></p>
 <h4 id="为什么连接是三次握手，终结却是四次挥手？"><a href="#为什么连接是三次握手，终结却是四次挥手？" class="headerlink" title="为什么连接是三次握手，终结却是四次挥手？"></a>为什么连接是三次握手，终结却是四次挥手？</h4><p>创建连接时，客户端向服务端发送SYN连接报文后，服务端可以同时将ACK+SYN报文发送给客户端，其中ACK用于应答客户端的连接请求，SYN用于同步。在关闭连接的时候，服务端收到FIN报文时，并不一定自身也是可关闭状态，所以先发送一个ACK，应答客户端的FIN请求，并在数据发送完成后，再发送FIN请求。</p>
 <h4 id="为什么TIME-WAIT状态需要经过2MSL（最大报文生存时间）才能返回到CLOSE状态？"><a href="#为什么TIME-WAIT状态需要经过2MSL（最大报文生存时间）才能返回到CLOSE状态？" class="headerlink" title="为什么TIME_WAIT状态需要经过2MSL（最大报文生存时间）才能返回到CLOSE状态？"></a>为什么TIME_WAIT状态需要经过2MSL（最大报文生存时间）才能返回到CLOSE状态？</h4><ul>
 <li>保证最后发送的ACK能够到达服务端。</li>
@@ -499,7 +499,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -510,7 +510,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -521,7 +521,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
