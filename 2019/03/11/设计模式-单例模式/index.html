@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="定义菜鸟教程中如下定义  单例模式（Singleton Pattern）是Java中最简单的设计模式之一。这种类型的设计模式属于创建型模式，它提供了一种创建对象的方式，可以直接访问，不需要实例化该类的对象。  特点：  单例类只能有一个实例。 单例类必须自己创建自己的唯一实例。 单例类必须给所有其他对象提供这一实例。  实现懒汉式线程不安全，Lazy初始化优点：简单；Lazy初始化，不浪费内存 缺">
+<meta name="description" content="定义菜鸟教程中如下定义  单例模式（Singleton Pattern）是Java中最简单的设计模式之一。这种类型的设计模式属于创建型模式，它提供了一种创建对象的方式，可以直接访问，不需要实例化该类的对象。  特点：  单例类只能有一个实例。 单例类必须自己创建自己的唯一实例。 单例类必须给所有其他对象提供这一实例。">
 <meta name="keywords" content="设计模式，单例模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="设计模式-单例模式">
 <meta property="og:url" content="https://www.jccc.me/2019/03/11/设计模式-单例模式/index.html">
 <meta property="og:site_name" content="jccc">
-<meta property="og:description" content="定义菜鸟教程中如下定义  单例模式（Singleton Pattern）是Java中最简单的设计模式之一。这种类型的设计模式属于创建型模式，它提供了一种创建对象的方式，可以直接访问，不需要实例化该类的对象。  特点：  单例类只能有一个实例。 单例类必须自己创建自己的唯一实例。 单例类必须给所有其他对象提供这一实例。  实现懒汉式线程不安全，Lazy初始化优点：简单；Lazy初始化，不浪费内存 缺">
+<meta property="og:description" content="定义菜鸟教程中如下定义  单例模式（Singleton Pattern）是Java中最简单的设计模式之一。这种类型的设计模式属于创建型模式，它提供了一种创建对象的方式，可以直接访问，不需要实例化该类的对象。  特点：  单例类只能有一个实例。 单例类必须自己创建自己的唯一实例。 单例类必须给所有其他对象提供这一实例。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-11T13:57:09.521Z">
+<meta property="og:updated_time" content="2019-03-12T08:51:41.882Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式-单例模式">
-<meta name="twitter:description" content="定义菜鸟教程中如下定义  单例模式（Singleton Pattern）是Java中最简单的设计模式之一。这种类型的设计模式属于创建型模式，它提供了一种创建对象的方式，可以直接访问，不需要实例化该类的对象。  特点：  单例类只能有一个实例。 单例类必须自己创建自己的唯一实例。 单例类必须给所有其他对象提供这一实例。  实现懒汉式线程不安全，Lazy初始化优点：简单；Lazy初始化，不浪费内存 缺">
+<meta name="twitter:description" content="定义菜鸟教程中如下定义  单例模式（Singleton Pattern）是Java中最简单的设计模式之一。这种类型的设计模式属于创建型模式，它提供了一种创建对象的方式，可以直接访问，不需要实例化该类的对象。  特点：  单例类只能有一个实例。 单例类必须自己创建自己的唯一实例。 单例类必须给所有其他对象提供这一实例。">
 
 
 
@@ -352,6 +352,7 @@
 <li>单例类必须自己创建自己的唯一实例。</li>
 <li>单例类必须给所有其他对象提供这一实例。</li>
 </ul>
+<a id="more"></a>
 <h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><h2 id="懒汉式"><a href="#懒汉式" class="headerlink" title="懒汉式"></a>懒汉式</h2><h3 id="线程不安全，Lazy初始化"><a href="#线程不安全，Lazy初始化" class="headerlink" title="线程不安全，Lazy初始化"></a>线程不安全，Lazy初始化</h3><p>优点：简单；Lazy初始化，不浪费内存</p>
 <p>缺点：线程不安全</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LazyUnsafeSingletion</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> LazyUnsafeSingletion singletion;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LazyUnsafeSingletion</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> LazyUnsafeSingletion <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (singletion == <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> singletion = <span class="keyword">new</span> LazyUnsafeSingletion();</span><br><span class="line">        <span class="keyword">return</span> singletion;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -408,6 +409,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/12/Java基础-线程/" rel="prev" title="Java基础-线程">
+                Java基础-线程 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -484,7 +489,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -495,7 +500,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -506,7 +511,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
