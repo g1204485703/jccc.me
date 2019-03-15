@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="jccc">
 <meta property="og:description" content="定义线程（thread）是操作系统能够进行运算调度的最小单位。它被包含在进程之中，是进程的实际运作单位。一条线程指的是进程中的一个单一顺序的控制流，一个进程中可以并发多个线程，每条线程并行执行不同的任务。 线程是独立调度和分派的基本单位。 同一进程中的多条线程将共享该进程中的全部系统资源。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-15T07:14:52.148Z">
+<meta property="og:updated_time" content="2019-03-15T09:50:23.383Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java基础-线程">
 <meta name="twitter:description" content="定义线程（thread）是操作系统能够进行运算调度的最小单位。它被包含在进程之中，是进程的实际运作单位。一条线程指的是进程中的一个单一顺序的控制流，一个进程中可以并发多个线程，每条线程并行执行不同的任务。 线程是独立调度和分派的基本单位。 同一进程中的多条线程将共享该进程中的全部系统资源。">
@@ -386,7 +386,8 @@
 <li>实现<code>Runnable</code>，<code>Callable</code>接口形式比继承<code>Thread</code>形式更加灵活，不受Java单继承的限制。</li>
 <li>实现<code>Runnable</code>，<code>Callable</code>接口新建的多个线程可以共享同一个<code>target</code>对象，适合多个相同线程来 处理同一份资源的情况。</li>
 </ul>
-<h1 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h1><h2 id="Executors提供的静态方法"><a href="#Executors提供的静态方法" class="headerlink" title="Executors提供的静态方法"></a><code>Executors</code>提供的静态方法</h2><h3 id="CachedThreadPool"><a href="#CachedThreadPool" class="headerlink" title="CachedThreadPool"></a>CachedThreadPool</h3><p>可缓存的线程池，如果已有线程可复用，则复用已有线程，无可复用则创建线程</p>
+<h1 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h1><h2 id="Executors提供的静态方法"><a href="#Executors提供的静态方法" class="headerlink" title="Executors提供的静态方法"></a><code>Executors</code>提供的静态方法</h2><p>一般情况下，不建议使用<code>Executors</code>，因为会有<code>OOM(OutOfMemory)</code>的风险。</p>
+<h3 id="CachedThreadPool"><a href="#CachedThreadPool" class="headerlink" title="CachedThreadPool"></a>CachedThreadPool</h3><p>可缓存的线程池，如果已有线程可复用，则复用已有线程，无可复用则创建线程</p>
 <p>可无限扩大，最大线程数量为<code>Integer.MAX_VALUE</code></p>
 <p>线程空闲时间超过<code>60</code>s就会被终结</p>
 <p>适合处理执行时间比较小的任务</p>
