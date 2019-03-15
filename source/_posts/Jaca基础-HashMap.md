@@ -7,6 +7,8 @@ tags: [Java,Java基础,Java集合类,HashMap]
 
 # HashMap
 
+
+
 <!--more-->
 
 ## 属性
@@ -252,37 +254,52 @@ final Node<K,V>[] resize() {
         newCap = DEFAULT_INITIAL_CAPACITY;
         newThr = (int)(DEFAULT_LOAD_FACTOR * DEFAULT_INITIAL_CAPACITY);
     }
+    // 初始化扩容阈值
     if (newThr == 0) {
         float ft = (float)newCap * loadFactor;
         newThr = (newCap < MAXIMUM_CAPACITY && ft < (float)MAXIMUM_CAPACITY ?
                   (int)ft : Integer.MAX_VALUE);
     }
     threshold = newThr;
+    // 新建新容量的newTab数组
     @SuppressWarnings({"rawtypes","unchecked"})
     	Node<K,V>[] newTab = (Node<K,V>[])new Node[newCap];
+    // 此处，把新建的newTab数组赋值给了table
     table = newTab;
+    // 旧表非空则开始节点转移
     if (oldTab != null) {
+        // 遍历桶位
         for (int j = 0; j < oldCap; ++j) {
             Node<K,V> e;
+            // 当前桶位非空
             if ((e = oldTab[j]) != null) {
                 oldTab[j] = null;
+                // 桶位仅有头节点存在，直接赋值给新表重新定位后的新桶位
                 if (e.next == null)
+                    // 此步骤未重新计算hash值，只是重新计算所处的桶位
                     newTab[e.hash & (newCap - 1)] = e;
+                // 是树节点直接使用树节点的赋值方法
                 else if (e instanceof TreeNode)
                     ((TreeNode<K,V>)e).split(this, newTab, j, oldCap);
+                // 桶位为链表节点且不仅含有头节点
                 else { // preserve order
                     Node<K,V> loHead = null, loTail = null;
                     Node<K,V> hiHead = null, hiTail = null;
                     Node<K,V> next;
+                    // 遍历取出旧节点放置新table中合适位置
                     do {
                         next = e.next;
+                        // 放回原位置桶位
                         if ((e.hash & oldCap) == 0) {
+                            // 首元素插入时放到头部
                             if (loTail == null)
                                 loHead = e;
+                            // 非首元素，在尾部追加新元素
                             else
                                 loTail.next = e;
                             loTail = e;
                         }
+                        // 放到原位置+oldCap桶位
                         else {
                             if (hiTail == null)
                                 hiHead = e;
@@ -291,10 +308,12 @@ final Node<K,V>[] resize() {
                             hiTail = e;
                         }
                     } while ((e = next) != null);
+                    // 新table中还处于j位置桶位转移
                     if (loTail != null) {
                         loTail.next = null;
                         newTab[j] = loHead;
                     }
+                    // 新table中处于（j+oldCap）位置的桶位转移
                     if (hiTail != null) {
                         hiTail.next = null;
                         newTab[j + oldCap] = hiHead;

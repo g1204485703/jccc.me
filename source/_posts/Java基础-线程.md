@@ -276,6 +276,8 @@ futureTask get 0
 
 ## `Executors`提供的静态方法
 
+一般情况下，不建议使用`Executors`，因为会有`OOM(OutOfMemory)`的风险。
+
 ### CachedThreadPool
 
 可缓存的线程池，如果已有线程可复用，则复用已有线程，无可复用则创建线程
@@ -365,4 +367,3 @@ public static ExecutorService newWorkStealingPool() {
 ```
 
 ## ThreadPoolExecutor
-
