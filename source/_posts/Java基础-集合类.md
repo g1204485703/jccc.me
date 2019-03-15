@@ -60,13 +60,84 @@ tags: [Java,Java基础,Java集合类]
 
 ### Set
 
+#### HashSet
+
+底层使用`HashMap`实现，定义默认值`PRESENT`作为VALUE存入`map`中
+
+```Java
+private transient HashMap<E,Object> map;
+
+// Dummy value to associate with an Object in the backing Map
+private static final Object PRESENT = new Object();
+
+public HashSet() {
+    map = new HashMap<>();
+}
+
+public boolean add(E e) {
+    return map.put(e, PRESENT)==null;
+}
+
+public Iterator<E> iterator() {
+    return map.keySet().iterator();
+}
+```
+
+#### LinkedHashSet
+
+`LinkedHashSet`继承`HashSet`，但是使用`HashSet`构造的是`LinkedHashMap`用于存储
+
+```Java
+public class LinkedHashSet<E>
+    extends HashSet<E>
+    implements Set<E>, Cloneable, java.io.Serializable {
+    
+    public LinkedHashSet(int initialCapacity, float loadFactor) {
+        super(initialCapacity, loadFactor, true);
+    }
+
+    public LinkedHashSet(int initialCapacity) {
+        super(initialCapacity, .75f, true);
+    }
+
+    public LinkedHashSet() {
+        super(16, .75f, true);
+    }
+
+    public LinkedHashSet(Collection<? extends E> c) {
+        super(Math.max(2*c.size(), 11), .75f, true);
+        addAll(c);
+    }
+}
+
+public class HashSet<E>
+    extends AbstractSet<E>
+    implements Set<E>, Cloneable, java.io.Serializable{
+    
+    HashSet(int initialCapacity, float loadFactor, boolean dummy) {
+        map = new LinkedHashMap<>(initialCapacity, loadFactor);
+    }
+}
+
+```
+
 ### Queue
 
 ## Map
 
+### HashTable
+
+线程安全的Map，直接使用`key.hashCode()`方法获取hash值
+
+value不可为null
+
 ### HashMap
 
 ​	key和value都可以为null
+
+### LinkedHashMap
+
+继承`HashMap`，增加了时间和空间上的开销，通过维护一个额外的双向链表保证了迭代顺序。特别地，该迭代顺序可以是插入顺序，也可以是访问顺序。因此，根据链表中元素的顺序可以将LinkedHashMap分为：保持插入顺序的LinkedHashMap 和 保持访问顺序的LinkedHashMap，其中LinkedHashMap的默认实现是按插入顺序排序的。
 
 ### ConcurrentHashMap
 
