@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Java,Java基础,类加载器,">
+  <meta name="keywords" content="Jvm,类加载,">
 
 
 
@@ -80,18 +80,18 @@
 
 
 <meta name="description" content="定义Java类加载器是Java运行时环境的一部分，负责动态加载Java类到Java虚拟机的内存空间中，类通常是按需加载，即第一次使用该类时才加载。由于有了类加载器，Java运行时系统不需要知道文件与文件系统。 Java源文件（.java）在经过Java编译器编译之后就被转换成Java自己代码（.class）。类加载器负责读取Java字节代码，并转换成java.lang.Class类的一个实例，每个">
-<meta name="keywords" content="Java,Java基础,类加载器">
+<meta name="keywords" content="Jvm,类加载">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java基础-类加载器">
-<meta property="og:url" content="https://www.jccc.me/2019/03/18/Java基础-类加载器/index.html">
+<meta property="og:title" content="Jvm-类加载">
+<meta property="og:url" content="https://www.jccc.me/2019/03/18/Jvm-类加载/index.html">
 <meta property="og:site_name" content="jccc">
 <meta property="og:description" content="定义Java类加载器是Java运行时环境的一部分，负责动态加载Java类到Java虚拟机的内存空间中，类通常是按需加载，即第一次使用该类时才加载。由于有了类加载器，Java运行时系统不需要知道文件与文件系统。 Java源文件（.java）在经过Java编译器编译之后就被转换成Java自己代码（.class）。类加载器负责读取Java字节代码，并转换成java.lang.Class类的一个实例，每个">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://www.jccc.me/imag/v2-4b379b6a26ae8567dedae02295805cf3_hd.png">
 <meta property="og:image" content="https://www.jccc.me/imag/331425-20160621125942490-979409578.png">
-<meta property="og:updated_time" content="2019-03-24T11:49:12.690Z">
+<meta property="og:updated_time" content="2019-03-25T09:36:42.520Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java基础-类加载器">
+<meta name="twitter:title" content="Jvm-类加载">
 <meta name="twitter:description" content="定义Java类加载器是Java运行时环境的一部分，负责动态加载Java类到Java虚拟机的内存空间中，类通常是按需加载，即第一次使用该类时才加载。由于有了类加载器，Java运行时系统不需要知道文件与文件系统。 Java源文件（.java）在经过Java编译器编译之后就被转换成Java自己代码（.class）。类加载器负责读取Java字节代码，并转换成java.lang.Class类的一个实例，每个">
 <meta name="twitter:image" content="https://www.jccc.me/imag/v2-4b379b6a26ae8567dedae02295805cf3_hd.png">
 
@@ -123,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="https://www.jccc.me/2019/03/18/Java基础-类加载器/">
+  <link rel="canonical" href="https://www.jccc.me/2019/03/18/Jvm-类加载/">
 
 
 
 
 
-  <title>Java基础-类加载器 | jccc</title>
+  <title>Jvm-类加载 | jccc</title>
   
 
 
@@ -256,7 +256,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.jccc.me/2019/03/18/Java基础-类加载器/">
+    <link itemprop="mainEntityOfPage" href="https://www.jccc.me/2019/03/18/Jvm-类加载/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jicong Guo">
@@ -273,7 +273,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Java基础-类加载器</h1>
+          <h1 class="post-title" itemprop="name headline">Jvm-类加载</h1>
         
 
         <div class="post-meta">
@@ -308,8 +308,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
+                  <a href="/categories/Jvm/" itemprop="url" rel="index">
+                    <span itemprop="name">Jvm</span>
                   </a>
                 </span>
 
@@ -432,11 +432,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Java/" rel="tag"># Java</a>
+            <a href="/tags/Jvm/" rel="tag"># Jvm</a>
           
-            <a href="/tags/Java基础/" rel="tag"># Java基础</a>
-          
-            <a href="/tags/类加载器/" rel="tag"># 类加载器</a>
+            <a href="/tags/类加载/" rel="tag"># 类加载</a>
           
         </div>
       
@@ -459,8 +457,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/03/20/Java基础-垃圾收集器/" rel="prev" title="Java基础-垃圾收集器">
-                Java基础-垃圾收集器 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/03/20/Jvm-垃圾收集/" rel="prev" title="Jvm-垃圾收集">
+                Jvm-垃圾收集 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -549,7 +547,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
