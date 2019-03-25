@@ -1,8 +1,8 @@
 ---
-title: Java基础-类加载器
+title: Jvm-类加载
 date: 2019-03-18 15:00:00
-categories: Java
-tags: [Java,Java基础,类加载器]
+categories: Jvm
+tags: [Jvm,类加载]
 ---
 
 # 定义
