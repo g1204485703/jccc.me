@@ -87,15 +87,18 @@
 <meta property="og:site_name" content="jccc">
 <meta property="og:description" content="概述垃圾收集（Garbage Collection，GC）最早起源于Lisp语言，是一种自动的存储管理机制。在Java中，垃圾收集是JVM中重要的组成部分。当需要排查各种内存溢出、内存泄漏问题时，以及垃圾收集称为系统达到更高并发量的瓶颈时，我们就需要对这些“自动化”技术实施必要的监控和调节。 在Java堆中，一个接口的多个实现类需要的内存可能不一样，一个方法中的多个分支需要的内存也可能不一样，只有">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="e:/jccc.me/source/_posts/imag/根搜索算法.png">
+<meta property="og:image" content="https://www.jccc.me/imag/根搜索算法.png">
 <meta property="og:image" content="https://www.jccc.me/imag/TIM截图20190326145305.png">
 <meta property="og:image" content="https://www.jccc.me/imag/TIM截图20190326155252.png">
 <meta property="og:image" content="https://www.jccc.me/imag/TIM截图20190326170833.png">
-<meta property="og:updated_time" content="2019-03-26T09:45:47.286Z">
+<meta property="og:image" content="https://www.jccc.me/imag/collectors.png">
+<meta property="og:image" content="https://www.jccc.me/imag/g1-011.png">
+<meta property="og:image" content="https://www.jccc.me/imag/fig1.jpg">
+<meta property="og:updated_time" content="2019-04-02T09:43:59.740Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Jvm-垃圾收集">
 <meta name="twitter:description" content="概述垃圾收集（Garbage Collection，GC）最早起源于Lisp语言，是一种自动的存储管理机制。在Java中，垃圾收集是JVM中重要的组成部分。当需要排查各种内存溢出、内存泄漏问题时，以及垃圾收集称为系统达到更高并发量的瓶颈时，我们就需要对这些“自动化”技术实施必要的监控和调节。 在Java堆中，一个接口的多个实现类需要的内存可能不一样，一个方法中的多个分支需要的内存也可能不一样，只有">
-<meta name="twitter:image" content="e:/jccc.me/source/_posts/imag/根搜索算法.png">
+<meta name="twitter:image" content="https://www.jccc.me/imag/根搜索算法.png">
 
 
 
@@ -349,6 +352,14 @@
       
         <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p><strong>垃圾收集（Garbage Collection，GC）</strong>最早起源于Lisp语言，是一种自动的存储管理机制。在Java中，垃圾收集是JVM中重要的组成部分。当需要排查各种内存溢出、内存泄漏问题时，以及垃圾收集称为系统达到更高并发量的瓶颈时，我们就需要对这些“自动化”技术实施必要的监控和调节。</p>
 <p>在Java堆中，一个接口的多个实现类需要的内存可能不一样，一个方法中的多个分支需要的内存也可能不一样，只有在程序处于运行期间时才能知道创建哪些对象，这部分内存的分配和回收都是动态的，这就是垃圾收集所关注的内存。</p>
+<h2 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h2><h3 id="并发和并行"><a href="#并发和并行" class="headerlink" title="并发和并行"></a>并发和并行</h3><p>在谈论垃圾收集器的上下文语境中，它们可以解释为</p>
+<p><strong>并行</strong>：指多条垃圾收集线程并行工作，但此时用户线程仍处于等待状态。</p>
+<p><strong>并发</strong>：指用户线程与垃圾收集线程同时执行（并不一定是并行的，可能会交替执行），用户线程继续运行，而垃圾收集程序运行在另一个CPU上。</p>
+<h3 id="吞吐量"><a href="#吞吐量" class="headerlink" title="吞吐量"></a>吞吐量</h3><p><strong>吞吐量</strong>就是CPU用于运行用户代码时间与CPU总消耗时间的比值</p>
+<p>吞吐量 = 运行用户代码时间 /（运行用户代码时间 + 垃圾收集时间）</p>
+<h3 id="Minor-GC、Major-GC-和-Full-GC"><a href="#Minor-GC、Major-GC-和-Full-GC" class="headerlink" title="Minor GC、Major GC 和 Full GC"></a>Minor GC、Major GC 和 Full GC</h3><p><strong>Minor GC</strong> 指的是从年轻代（包括Eden和Survivor区域）回收内存。</p>
+<p><strong>Major GC</strong> 指的是从老年代回收内存。</p>
+<p><strong>Full GC</strong> 指的是从年轻代和老年代回收内存。</p>
 <a id="more"></a>
 <h1 id="对象存活判断算法"><a href="#对象存活判断算法" class="headerlink" title="对象存活判断算法"></a>对象存活判断算法</h1><h2 id="引用计数法"><a href="#引用计数法" class="headerlink" title="引用计数法"></a>引用计数法</h2><p><strong>引用计数法</strong>是指给对象添加一个引用计数器，每当有一个地方引用它时，计数器就加1；当引用失效时，计数器值就减1；任何时刻计数器都为0的对象就是不可能再被使用的。</p>
 <p>引用计数法难以解决对象之间相互循环引用的问题，例如</p>
@@ -356,7 +367,7 @@
 <p>创建相互引用的<code>rc1</code>和<code>rc2</code>，随后赋值为<code>null</code>。此时因为两对象的相互引用，即使<code>rc1</code>,<code>rc2</code>都不再指向对象，但是对象的引用计数器都不为0，所以无法被回收。</p>
 <h2 id="根搜索算法"><a href="#根搜索算法" class="headerlink" title="根搜索算法"></a>根搜索算法</h2><p><strong>根搜索算法</strong>是指通过一系列的名为“GC Roots”的对象作为起始点，从这些节点开始向下搜索，搜索所走过的路径称为<em>引用链（Reference Chain）</em>，当一个对象到GC Roots没有任何引用链相连（即从<em>GC Roots</em> 到这个对象不可达）时，则证明此对象是不可用的。</p>
 <p>如下图中的<em>Object1</em>，<em>Object2</em>，<em>Object3</em>，<em>Object4</em>是可以通过<em>GC Roots</em> 到达的，即为可用对象；<em>Object5</em>，<em>Object6</em>，<em>Object7</em> 对象之间有关联，但不可通过<em>GC Roots</em> 到达，即为不可用对象。</p>
-<p><img src="E:/jccc.me/source/_posts/imag/根搜索算法.png" alt="根搜索算法"></p>
+<p><img src="/imag/根搜索算法.png" alt="根搜索算法"></p>
 <p>在Java中，可作为<em>GC Roots</em> 的对象包括下面几种</p>
 <ul>
 <li>虚拟机栈（栈帧中的本地变量表）中的引用的对象</li>
@@ -383,7 +394,7 @@
 <p>主要缺点：</p>
 <ol>
 <li>在对象存活率较高时，要执行较多的复制操作，效率将会变低。</li>
-<li>空间浪费比较大，未避免浪费50%的空间，需要额外的空间进行分配担保。</li>
+<li>空间浪费比较大，为避免浪费50%的空间，需要额外的空间进行分配担保。</li>
 </ol>
 <p>复制算法执行过程：</p>
 <p><img src="/imag/TIM截图20190326155252.png" alt="TIM截图20190326155252"></p>
@@ -393,9 +404,56 @@
 <p>标记 - 整理算法执行过程：</p>
 <p><img src="/imag/TIM截图20190326170833.png" alt="TIM截图20190326170833"></p>
 <h2 id="分代收集算法"><a href="#分代收集算法" class="headerlink" title="分代收集算法"></a>分代收集算法</h2><p><strong>分代收集算法</strong>只是根据对象的存活周期的不同将内存划分为几块，一般把Java堆分为新生代和老年代，这样就可以根据各个年代的特点采用最适合的收集算法。</p>
-<p>在新生代中，每次垃圾收集时都有大批对象被回收，只有少部分对象存货，那就选用复制算法，只需要付出少量存活对象的复制成本就可以完成收集。</p>
+<p>在新生代中，每次垃圾收集时都有大批对象被回收，只有少部分对象存活，那就选用复制算法，只需要付出少量存活对象的复制成本就可以完成收集。</p>
 <p>老年代中因为对象存活率高、没有额外空间对它进行分配担保，就必须使用<strong>标记 - 清除</strong>或<strong>标记 - 整理</strong>算法来进行回收。</p>
-<h1 id="垃圾收集器"><a href="#垃圾收集器" class="headerlink" title="垃圾收集器"></a>垃圾收集器</h1><h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><p>无论是通过<strong>引用计数法</strong>还是<strong>根搜索算法</strong>判断对象的引用链是否可达，判断对象是否存活都与<strong>引用</strong>有关。</p>
+<h1 id="垃圾收集器"><a href="#垃圾收集器" class="headerlink" title="垃圾收集器"></a>垃圾收集器</h1><p>收集算法是内存回收的方法论，垃圾收集器就是内存回收的具体实现。</p>
+<p>图示展示了7中垃圾收集器，相互连线的表示可以搭配使用。</p>
+<p><img src="/imag/collectors.png" alt="collectors"></p>
+<h2 id="Serial收集器"><a href="#Serial收集器" class="headerlink" title="Serial收集器"></a>Serial收集器</h2><p><strong>Serial收集器</strong>是最基本、最早出现的收集器。Serial收集器在新生代中采用<strong>复制算法</strong>，并且是一个单线程的收集器，它的“单线程”的意义不仅仅说明它只使用一个CPU或者一个收集线程，还表示它在进行垃圾收集时，必须暂停其它所有的工作线程（Stop The World），直至收集结束。</p>
+<p>对比其他收集器的单线程收集，Serial更为简单高效，在单个CPU环境下，没有线程交互的开销，可以获得最高的单线程收集效率。</p>
+<h2 id="ParNew收集器"><a href="#ParNew收集器" class="headerlink" title="ParNew收集器"></a>ParNew收集器</h2><p><strong>ParNew收集器</strong>其实就是Serial收集器的多线程版本，除了使用多线程进行垃圾收集之外，其余行为包括Serial收集器可用的所有可控参数、收集算法、Stop The World、对象分配规则、回收策略等都与Serial收集器完全一致。</p>
+<p>除Serial收集器外，只有ParNew收集器能与CMS收集器配合工作。在单CPU的环境中，ParNew不会有比Serial收集器更好的效果。默认开启的收集线程数与CPU的数量相同，随着可使用CPU的数量的增加，对于HC时系统资源的利用很有好处。</p>
+<h2 id="Parallel-Scavenge收集器"><a href="#Parallel-Scavenge收集器" class="headerlink" title="Parallel Scavenge收集器"></a>Parallel Scavenge收集器</h2><p><strong>Parallel Scavenge收集器</strong>也是一个新生代收集器，也是使用复制算法，也是并行的多线程收集器。</p>
+<p>Parallel Scavenge收集器的特点是关注点与其他收集器不同，其他收集器的关注点是尽可能缩短垃圾收集时用户进程的停顿，而Parallel Scavenge收集器的目标则是达到一个可控的<strong>吞吐量</strong>。</p>
+<p>停顿时间越短越适合需要与用户交互的程序，良好的响应速度能提升用户的体验；而高吞吐则可以更高效率得利用CPU时间，尽快完成程序的运算任务，主要适合在后台运算而不需要太多交互的任务。</p>
+<h2 id="Serial-Old收集器"><a href="#Serial-Old收集器" class="headerlink" title="Serial Old收集器"></a>Serial Old收集器</h2><p><strong>Serial Old收集器</strong>是Serial收集器的老年代版本，同样是一个单线程收集器，但是使用<strong>标记 - 整理算法</strong>。</p>
+<p>在Server模式下，主要作用是与Paraller Scavenge收集器搭配使用；作为CMS收集器的后背预案，在并发收集发生<code>Concurrent Mode Failure</code>时使用。</p>
+<h2 id="Parallel-Old收集器"><a href="#Parallel-Old收集器" class="headerlink" title="Parallel Old收集器"></a>Parallel Old收集器</h2><p><strong>Parallel Old收集器</strong>是Parallel Scavenge收集器的老年代版本，使用多线程收集，使用<strong>标记 - 整理算法</strong>。</p>
+<h2 id="CMS收集器"><a href="#CMS收集器" class="headerlink" title="CMS收集器"></a>CMS收集器</h2><p><strong>CMS（Concurrent Mark Sweep）收集器</strong>是一种以获取最短回收停顿时间为目标的老年代收集器。基于<strong>标记 - 清除算法</strong>。</p>
+<p>CMS收集器的运行过程分为4个步骤<strong>：</strong></p>
+<ul>
+<li><strong>初始标记（CMS initial mark）</strong>，标记GC Roots能直接关联到的对象，速度很快。</li>
+<li><strong>并发标记（CMS concurrent mark）</strong>，进行GC Roots Tracing，耗时最长。</li>
+<li><strong>重新标记（CMS remark）</strong>,修正并发标记期间，因用户程序继续运作而导致标记变动的那一部分对象的标记记录，停顿时间会比初始标记阶段稍长，但远比并发标记的时间短。</li>
+<li><strong>并发清除（CMS concurrent sweep）</strong></li>
+</ul>
+<p>其中<strong>初始标记</strong>、<strong>重新标记</strong>这两个步骤任然需要“Stop The World”。初始标记仅仅只是标记一下GC Roots能直接关联到的对象，速度很快。</p>
+<p><strong>并发标记</strong>、<strong>并发清除</strong>是与用户线程一起并发执行的。</p>
+<p>优点：</p>
+<ul>
+<li>并发收集</li>
+<li>低停顿</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li><strong>CMS收集器对CPU资源非常敏感。</strong>CMS默认启动的回收线程数是（CPU数量 + 3）/ 4，即当CPU数量在4个以上时，并发回收线程最多战友不超过25%的CPU资源，但是在CPU数量不足4个时，对用户线程的影响比较大。</li>
+<li><strong>CMS收集器无法处理浮动垃圾。</strong>由于并发清理阶段用户线程还在运行，自然也会还有新的垃圾不断产生，但这部分垃圾出现在标记过程之后，CMS收集器在本次收集中无法处理它们，只能留待下一次GC时再进行清理，这部分垃圾成为浮动垃圾。正因为浮动垃圾的存在，CMS收集器不能像其他收集器那样等到老年代几乎完全被填满再进行，需要预留一部分空间，默认配置下，老年代空间在使用68%时，CMS收集器将被激活。在CMS运行期间预留的内存无法满足程序需要，会出现一次“Concurrent Mode Failure”，此时虚拟机将启动后备方案，临时启动Serial Old收集器重新进行老年代的垃圾收集。可通过<code>-XX:CMSInitiatingOccupancyFraction</code>配置启动时比例。</li>
+<li><strong>基于标记 - 清除算法，会产生大量空间碎片。</strong>空间碎片过多，在老年代还有空间剩余但是无法找到足够的连续空间分配给大对象时，将会触发一次Full GC。为解决这个问题，CMS收集器提供一个<code>-XX:+useCMSCompatAtFullCollection</code>开关参数，在Full GC后开始一个碎片整理过程，但是碎片整理过程无法并发，会增加停顿时间。也可通过配置<code>-XX:CMSFullGCBeforeCompaction</code>，配置在执行多少次不压缩的Full GC后，进行一次碎片整理。</li>
+</ul>
+<h2 id="G1收集器"><a href="#G1收集器" class="headerlink" title="G1收集器"></a>G1收集器</h2><p><strong>G1收集器</strong>是一种并发、并行、部分Stop The World，基于复制算法和分代回收算法，回收整个Java堆的收集器，可以非常准确地控制停顿，能让使用者明确指定一个长度为M毫秒的时间片段内，消耗在垃圾收集上的时间不得超过N毫秒。在JDK1.9中已经成为默认的收集器。</p>
+<p><strong>G1取消了新生代老年代的物理空间</strong>，将整个Java堆（包括新生代、老年代）划分多个大小固定的独立区域（Region），再将Region逻辑划分成Eden、Survivor、Old，在物理上并不连续，这样再也无需对每个代进行设置，担心每个代内存是否够用。在垃圾收集时，G1将对象从一个区域复制到另一个区域，也同时完成了清理工作，避免了内存碎片问题。可通过<code>-XX:G1HeapRegionSize</code>设置Region的大小，如果不指定，G1会根据Java堆的大小自动决定。</p>
+<p>可通过<code>-XX:NewRatio=n</code>来配置新生代与老年代的比例，默认比例为2，即新生代：老年代 = 2：1；可通过<code>-XX:SurvivorRatio=n</code>配置Eden与Survivor的比例，默认为8。</p>
+<p><img src="/imag/g1-011.png" alt="G1 Heap Regions"></p>
+<p>在G1中，还有一种特殊的区域Humongous区域，如果一个对象占用的空间超过Region大小的一半时，会被放入Humongous Region（巨型区域）中。</p>
+<h3 id="G1-Young-GC"><a href="#G1-Young-GC" class="headerlink" title="G1 Young GC"></a>G1 Young GC</h3><p>Young GC主要是对Eden区进行GC，在Eden空间耗尽时被触发，会<strong>Stop The World</strong>，使用多线程并发复制对象，减少GC时间，并通过控制年轻代的Region个数，控制Young GC的时间开销。</p>
+<p>在Young GC过程中，需要对对象的存活性进行判断，但根对象可能遍布各个分区，完整扫描会耗费大量时间，G1引进Remembered Set概念，用于跟踪指向某个Heap区内的对象引用。</p>
+<h4 id="Remembered-Set"><a href="#Remembered-Set" class="headerlink" title="Remembered Set"></a>Remembered Set</h4><p>RSet是辅助GC过程的一种结构，与Card Table类似。RSet记录了其他Region中的对象对本Region中对象的关系属于Points-Into结构（谁引用了我的对象）；Card Table则是一种Points-Out结构（我引用了谁的对象）。G1的RSet是在Card Table的基础上实现的，每个Region记录下别的Region对自己对象的引用，并标记这些引用分别在哪些Card的范围内，RSet其实是一个HashTable，Key是别的Region的起始地址，Vlued是一个集合，里面的元素是Card Table的Index。</p>
+<p><img src="/imag/fig1.jpg" alt="Remembered Set"></p>
+<p>图中每个Region被分成了多个Card，不同Region中的Card会相互引用，如Region1中的Card对象引用了Region2中Card中的对象。蓝色实线表示的就是Points-Out关系，而在Region2的RSet中，记录了Region1的Card，即红色虚线表示的关系，是Points-Into关系。</p>
+<p>RSet中的引用关系靠Post-Write Barrier和Concurrent Refinement Threads来维护，Post-Write Barrier记录了跨Region的引用更新，更新日志缓冲区记录那些包含更新引用的Card，缓冲区满了之后，Post-Write Barrier停止服务，由Concurrent Refinement Threads开始处理缓冲区的日志。</p>
+<p>在Young GC中，选定年轻代的RSet作为根集，这些RSet记录了老年代对年轻代的跨代引用，避免扫描整个老年代。而在Mixed GC中，老年代中的RSet记录了老年代对老年代的引用，年轻代对老年代的引用则由扫描全部年轻代获得。避免了对老年代的整体扫描，大大减少了GC的工作量。</p>
+<h3 id="Mix-GC"><a href="#Mix-GC" class="headerlink" title="Mix GC"></a>Mix GC</h3><p>Mix GC</p>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><p>无论是通过<strong>引用计数法</strong>还是<strong>根搜索算法</strong>判断对象的引用链是否可达，判断对象是否存活都与<strong>引用</strong>有关。</p>
 <p>JDK1.2之前，Java对引用的定义很传统：如果reference类型的数据中存储的数值代表的是另外一块内存的起始地址，就称这块内存代表着一个引用。</p>
 <p>JDK1.2之后，Java对引用的概念进行了扩充，将引用分为<strong>强引用（Strong Reference）</strong>、<strong>软引用（Soft Reference）</strong>、<strong>弱引用（Weak Reference）</strong>、<strong>虚引用（Phantom Reference）</strong>，这四种引用强度依次逐渐减弱。</p>
 <h3 id="强引用"><a href="#强引用" class="headerlink" title="强引用"></a>强引用</h3><p><strong>强引用</strong>就是指在程序代码中普遍存在的，类似<code>Object obj = new() Object()</code>这类的引用，只要强引用还存在，垃圾收集器就永远不会回收掉被引用的对象。</p>
@@ -574,7 +632,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对象存活判断算法"><span class="nav-number">2.</span> <span class="nav-text">对象存活判断算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#引用计数法"><span class="nav-number">2.1.</span> <span class="nav-text">引用计数法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#根搜索算法"><span class="nav-number">2.2.</span> <span class="nav-text">根搜索算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#二次标记"><span class="nav-number">2.2.1.</span> <span class="nav-text">二次标记</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一次标记"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">第一次标记</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#finalize-方法"><span class="nav-number">2.2.1.2.</span> <span class="nav-text">finalize()方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二次标记"><span class="nav-number">2.2.1.3.</span> <span class="nav-text">第二次标记</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#垃圾收集算法"><span class="nav-number">3.</span> <span class="nav-text">垃圾收集算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#标记-清除算法"><span class="nav-number">3.1.</span> <span class="nav-text">标记 - 清除算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复制算法"><span class="nav-number">3.2.</span> <span class="nav-text">复制算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标记-整理算法"><span class="nav-number">3.3.</span> <span class="nav-text">标记 - 整理算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分代收集算法"><span class="nav-number">3.4.</span> <span class="nav-text">分代收集算法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#垃圾收集器"><span class="nav-number">4.</span> <span class="nav-text">垃圾收集器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#附录"><span class="nav-number">5.</span> <span class="nav-text">附录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#引用"><span class="nav-number">5.1.</span> <span class="nav-text">引用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#强引用"><span class="nav-number">5.1.1.</span> <span class="nav-text">强引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软引用"><span class="nav-number">5.1.2.</span> <span class="nav-text">软引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#弱引用"><span class="nav-number">5.1.3.</span> <span class="nav-text">弱引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#虚引用"><span class="nav-number">5.1.4.</span> <span class="nav-text">虚引用</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#相关概念"><span class="nav-number">1.1.</span> <span class="nav-text">相关概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#并发和并行"><span class="nav-number">1.1.1.</span> <span class="nav-text">并发和并行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#吞吐量"><span class="nav-number">1.1.2.</span> <span class="nav-text">吞吐量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Minor-GC、Major-GC-和-Full-GC"><span class="nav-number">1.1.3.</span> <span class="nav-text">Minor GC、Major GC 和 Full GC</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对象存活判断算法"><span class="nav-number">2.</span> <span class="nav-text">对象存活判断算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#引用计数法"><span class="nav-number">2.1.</span> <span class="nav-text">引用计数法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#根搜索算法"><span class="nav-number">2.2.</span> <span class="nav-text">根搜索算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#二次标记"><span class="nav-number">2.2.1.</span> <span class="nav-text">二次标记</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一次标记"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">第一次标记</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#finalize-方法"><span class="nav-number">2.2.1.2.</span> <span class="nav-text">finalize()方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二次标记"><span class="nav-number">2.2.1.3.</span> <span class="nav-text">第二次标记</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#垃圾收集算法"><span class="nav-number">3.</span> <span class="nav-text">垃圾收集算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#标记-清除算法"><span class="nav-number">3.1.</span> <span class="nav-text">标记 - 清除算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复制算法"><span class="nav-number">3.2.</span> <span class="nav-text">复制算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标记-整理算法"><span class="nav-number">3.3.</span> <span class="nav-text">标记 - 整理算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分代收集算法"><span class="nav-number">3.4.</span> <span class="nav-text">分代收集算法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#垃圾收集器"><span class="nav-number">4.</span> <span class="nav-text">垃圾收集器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Serial收集器"><span class="nav-number">4.1.</span> <span class="nav-text">Serial收集器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ParNew收集器"><span class="nav-number">4.2.</span> <span class="nav-text">ParNew收集器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Parallel-Scavenge收集器"><span class="nav-number">4.3.</span> <span class="nav-text">Parallel Scavenge收集器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Serial-Old收集器"><span class="nav-number">4.4.</span> <span class="nav-text">Serial Old收集器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Parallel-Old收集器"><span class="nav-number">4.5.</span> <span class="nav-text">Parallel Old收集器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CMS收集器"><span class="nav-number">4.6.</span> <span class="nav-text">CMS收集器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#G1收集器"><span class="nav-number">4.7.</span> <span class="nav-text">G1收集器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#G1-Young-GC"><span class="nav-number">4.7.1.</span> <span class="nav-text">G1 Young GC</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Remembered-Set"><span class="nav-number">4.7.1.1.</span> <span class="nav-text">Remembered Set</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mix-GC"><span class="nav-number">4.7.2.</span> <span class="nav-text">Mix GC</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#附录"><span class="nav-number">5.</span> <span class="nav-text">附录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#引用"><span class="nav-number">5.1.</span> <span class="nav-text">引用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#强引用"><span class="nav-number">5.1.1.</span> <span class="nav-text">强引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软引用"><span class="nav-number">5.1.2.</span> <span class="nav-text">软引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#弱引用"><span class="nav-number">5.1.3.</span> <span class="nav-text">弱引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#虚引用"><span class="nav-number">5.1.4.</span> <span class="nav-text">虚引用</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
