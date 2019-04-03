@@ -252,7 +252,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.jccc.me/2019/03/20/Jvm-垃圾收集/">
+    <link itemprop="mainEntityOfPage" href="https://www.jccc.me/2019/03/26/Jvm-垃圾收集/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jicong Guo">
@@ -271,7 +271,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/03/20/Jvm-垃圾收集/" itemprop="url">Jvm-垃圾收集</a></h1>
+                <a class="post-title-link" href="/2019/03/26/Jvm-垃圾收集/" itemprop="url">Jvm-垃圾收集</a></h1>
         
 
         <div class="post-meta">
@@ -283,8 +283,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-20T21:00:00+08:00">
-                2019-03-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-26T21:00:00+08:00">
+                2019-03-26
               </time>
             
 
@@ -346,17 +346,9 @@
         
           <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p><strong>垃圾收集（Garbage Collection，GC）</strong>最早起源于Lisp语言，是一种自动的存储管理机制。在Java中，垃圾收集是JVM中重要的组成部分。当需要排查各种内存溢出、内存泄漏问题时，以及垃圾收集称为系统达到更高并发量的瓶颈时，我们就需要对这些“自动化”技术实施必要的监控和调节。</p>
 <p>在Java堆中，一个接口的多个实现类需要的内存可能不一样，一个方法中的多个分支需要的内存也可能不一样，只有在程序处于运行期间时才能知道创建哪些对象，这部分内存的分配和回收都是动态的，这就是垃圾收集所关注的内存。</p>
-<h2 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h2><h3 id="并发和并行"><a href="#并发和并行" class="headerlink" title="并发和并行"></a>并发和并行</h3><p>在谈论垃圾收集器的上下文语境中，它们可以解释为</p>
-<p><strong>并行</strong>：指多条垃圾收集线程并行工作，但此时用户线程仍处于等待状态。</p>
-<p><strong>并发</strong>：指用户线程与垃圾收集线程同时执行（并不一定是并行的，可能会交替执行），用户线程继续运行，而垃圾收集程序运行在另一个CPU上。</p>
-<h3 id="吞吐量"><a href="#吞吐量" class="headerlink" title="吞吐量"></a>吞吐量</h3><p><strong>吞吐量</strong>就是CPU用于运行用户代码时间与CPU总消耗时间的比值</p>
-<p>吞吐量 = 运行用户代码时间 /（运行用户代码时间 + 垃圾收集时间）</p>
-<h3 id="Minor-GC、Major-GC-和-Full-GC"><a href="#Minor-GC、Major-GC-和-Full-GC" class="headerlink" title="Minor GC、Major GC 和 Full GC"></a>Minor GC、Major GC 和 Full GC</h3><p><strong>Minor GC</strong> 指的是从年轻代（包括Eden和Survivor区域）回收内存。</p>
-<p><strong>Major GC</strong> 指的是从老年代回收内存。</p>
-<p><strong>Full GC</strong> 指的是从年轻代和老年代回收内存。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/03/20/Jvm-垃圾收集/#more" rel="contents">
+            <a class="btn" href="/2019/03/26/Jvm-垃圾收集/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
