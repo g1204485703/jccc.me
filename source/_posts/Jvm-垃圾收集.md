@@ -1,6 +1,7 @@
 ---
 title: Jvm-垃圾收集
-date: 2019-03-20 21:00:00
+date: 2019-03-26 21:00:00
+updated: 2019-04-03 18:00:00
 categories: Jvm
 tags: [Jvm,垃圾收集]
 ---
@@ -10,6 +11,8 @@ tags: [Jvm,垃圾收集]
 **垃圾收集（Garbage Collection，GC）**最早起源于Lisp语言，是一种自动的存储管理机制。在Java中，垃圾收集是JVM中重要的组成部分。当需要排查各种内存溢出、内存泄漏问题时，以及垃圾收集称为系统达到更高并发量的瓶颈时，我们就需要对这些“自动化”技术实施必要的监控和调节。
 
 在Java堆中，一个接口的多个实现类需要的内存可能不一样，一个方法中的多个分支需要的内存也可能不一样，只有在程序处于运行期间时才能知道创建哪些对象，这部分内存的分配和回收都是动态的，这就是垃圾收集所关注的内存。
+
+<!--more-->
 
 ## 相关概念
 
@@ -34,8 +37,6 @@ tags: [Jvm,垃圾收集]
 **Major GC** 指的是从老年代回收内存。
 
 **Full GC** 指的是从年轻代和老年代回收内存。
-
-<!--more-->
 
 # 对象存活判断算法
 
@@ -191,23 +192,36 @@ Parallel Scavenge收集器的特点是关注点与其他收集器不同，其他
 
 **CMS（Concurrent Mark Sweep）收集器**是一种以获取最短回收停顿时间为目标的老年代收集器。基于**标记 - 清除算法**。
 
-CMS收集器的运行过程分为4个步骤**：**
+### CMS收集器的运行过程
 
-- **初始标记（CMS initial mark）**，标记GC Roots能直接关联到的对象，速度很快。
-- **并发标记（CMS concurrent mark）**，进行GC Roots Tracing，耗时最长。
-- **重新标记（CMS remark）**,修正并发标记期间，因用户程序继续运作而导致标记变动的那一部分对象的标记记录，停顿时间会比初始标记阶段稍长，但远比并发标记的时间短。
-- **并发清除（CMS concurrent sweep）**
+#### 1. 初始标记（CMS Initial Mark）
+
+标记GC Roots能直接关联到的对象，速度很快。
+
+#### 2. 并发标记（CMS Concurrent Mark）
+
+进行GC Roots Tracing，耗时最长。
+
+#### 3. 最终标记（CMS Remark）
+
+修正并发标记期间，因用户程序继续运作而导致标记变动的那一部分对象的标记记录，停顿时间会比初始标记阶段稍长，但远比并发标记的时间短。
+
+#### 4. 并发清除（CMS Concurrent Sweep）
+
+清除未存活的对象
 
 其中**初始标记**、**重新标记**这两个步骤任然需要“Stop The World”。初始标记仅仅只是标记一下GC Roots能直接关联到的对象，速度很快。
 
 **并发标记**、**并发清除**是与用户线程一起并发执行的。
 
-优点：
+### CMS的优缺点分析
+
+#### 优点
 
 - 并发收集
 - 低停顿
 
-缺点：
+#### 缺点
 
 - **CMS收集器对CPU资源非常敏感。**CMS默认启动的回收线程数是（CPU数量 + 3）/ 4，即当CPU数量在4个以上时，并发回收线程最多战友不超过25%的CPU资源，但是在CPU数量不足4个时，对用户线程的影响比较大。
 - **CMS收集器无法处理浮动垃圾。**由于并发清理阶段用户线程还在运行，自然也会还有新的垃圾不断产生，但这部分垃圾出现在标记过程之后，CMS收集器在本次收集中无法处理它们，只能留待下一次GC时再进行清理，这部分垃圾成为浮动垃圾。正因为浮动垃圾的存在，CMS收集器不能像其他收集器那样等到老年代几乎完全被填满再进行，需要预留一部分空间，默认配置下，老年代空间在使用68%时，CMS收集器将被激活。在CMS运行期间预留的内存无法满足程序需要，会出现一次“Concurrent Mode Failure”，此时虚拟机将启动后备方案，临时启动Serial Old收集器重新进行老年代的垃圾收集。可通过`-XX:CMSInitiatingOccupancyFraction`配置启动时比例。
@@ -227,7 +241,7 @@ CMS收集器的运行过程分为4个步骤**：**
 
 ### G1 Young GC
 
-Young GC主要是对Eden区进行GC，在Eden空间耗尽时被触发，会**Stop The World**，使用多线程并发复制对象，减少GC时间，并通过控制年轻代的Region个数，控制Young GC的时间开销。
+**Young GC**主要是对Eden区进行GC，在Eden空间耗尽时被触发，会**Stop The World**，使用多线程并发复制对象，减少GC时间，并通过控制年轻代的Region个数，控制Young GC的时间开销。
 
 在Young GC过程中，需要对对象的存活性进行判断，但根对象可能遍布各个分区，完整扫描会耗费大量时间，G1引进Remembered Set概念，用于跟踪指向某个Heap区内的对象引用。
 
@@ -243,9 +257,41 @@ RSet中的引用关系靠Post-Write Barrier和Concurrent Refinement Threads来�
 
 在Young GC中，选定年轻代的RSet作为根集，这些RSet记录了老年代对年轻代的跨代引用，避免扫描整个老年代。而在Mixed GC中，老年代中的RSet记录了老年代对老年代的引用，年轻代对老年代的引用则由扫描全部年轻代获得。避免了对老年代的整体扫描，大大减少了GC的工作量。
 
-### Mix GC
+### Mixed GC
 
-Mix GC
+**Mixed GC**会回收所有新生代的Region，分为Global Concurrent Marking（全局并发标记）和evacuation（拷贝存活对象）两步。
+
+首先根据Global Concurrent Marking，可以知道老年代Region中有多少空间要被回收以及收集收益高的若干老年代Region，在每次Young GC之后和再次发生Mixed GC之前，会检查垃圾占比是否达到`--X:G1MixedGCLiveThresholdPercent`老年代中存活对象占比参数，在达到后的下一次检查，就会在用户指定的开销目标范围内尽可能选择收益高的老年代Region进行evacuation，最终完成收集释放空间。
+
+#### Global Concurrent Marking
+
+Global Concurrent Marking全局并发标记主要为Mix GC提供标记服务，并不是一次GC过程的必须环节。全局并发标记过程分为五个阶段
+
+##### 1. 初始标记（Initial Mark ）
+
+是一个STW事件，负责完成标记GC Roots直接关联的对象，并将他们的字段压入Marking Stack（扫描栈）中等待后续扫描。因为是STW事件，通常会在Young GC的时候共用Young GC的STW，复用Root Scan，所以可以说全局并发标记是伴随着Young GC而发生的。
+
+##### 2. 根区域扫描（Root Region Scan ）
+
+根区域扫描是从Survior区的对象出发，标记被引用到老年代中的对象，并把它们的字段压入Marking Stack中等待后续扫描。此阶段是与应用程序并发运行的，不会被STW打断，并且必须在Young GC开始前完成，如果恰好新生代在根区域扫描过程中满了，需要进行Young GC，Young GC会进行等待。
+
+##### 3. 并发标记（Concurrent Mark ）
+
+并发标记与用户进程并行执行，不断从Marking Stack中取出引用递归，扫描堆里的对象压入Marking Stack并对其进行标记，直至Marking Stack被清空。
+
+##### 4. 最终标记（Remark）
+
+最终标记是一个STW事件，处理并发标记完成后，Java线程剩下的未处理的SATB Write Barrier记录。同时此阶段也进行弱引用处理。
+
+##### 5. 清除（Cleanup）
+
+CleanUp是一个SWT事件，负责清点出所有存活对象的Region和没有存活对象的Region，并且更新RSet。
+
+紧跟其后的Concurrent Cleanup是一个并发事件，负责清空没有存活对象的Region，并加入到Free List中。
+
+#### 三色标记算法
+
+
 
 # 附录
 
