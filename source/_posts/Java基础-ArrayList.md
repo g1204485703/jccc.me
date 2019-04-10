@@ -1,6 +1,7 @@
 ---
 title: Java基础-ArrayList
 date: 2019-02-28 21:30:00
+updated: 2019-02-28 21:30:00
 categories: Java
 tags: [Java,Java基础,Java集合类,ArrayList]
 ---

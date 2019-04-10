@@ -1,6 +1,7 @@
 ---
 title: Java基础-HashMap
 date: 2019-03-06 15:30:00
+updated: 2019-03-06 15:30:00
 categories: Java
 tags: [Java,Java基础,Java集合类,HashMap]
 ---
